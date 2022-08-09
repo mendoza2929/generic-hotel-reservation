@@ -5,3 +5,10 @@
     transform: translate(-50%, -50%);
     width: 400px;
 }
+
+.custom-alert{
+    position:fixed;
+    top:10px;
+    left:68%;
+    width: 30%;
+}
