@@ -4,7 +4,7 @@
  require("db.php");
  require("alert.php");
 
- session_start();
+        session_start();
         if((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){
            redirect('dashboard.php');
         }
