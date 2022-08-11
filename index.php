@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES</title>
-    <link rel = "stylesheet" href="indexs.css" type="text/css"/>
+    <link rel = "stylesheet" href="./index.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
     <!-- Link Swiper's CSS -->
@@ -14,9 +14,39 @@
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
   <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+*{
+    font-family: 'Poppins',sans-serif;
+
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+.availability-form{
+  z-index:2;
+  margin-top: -100px;
+  position: relative;
+}
+</style>
+
 </head>
-<body>
+<body class="bg-light">
 
 
     <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
@@ -53,27 +83,70 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+
     <!-- Swiper -->
+    <div class="container-fluid px-lg-4 mt-2">
     <div class="swiper swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="./img/background.jpg" class="h-50 w-100 d-block"  />
+          <img src="./img/bg2.jpg" class="h-50 w-100 d-block"  />
         </div>
     
       </div>
     </div>
 
-    <!-- Swiper JS -->
-  </div>
+    <!---Check Availability--->
+
+    <div class="container availability-form mt-4 ">
+      <div class="row">
+        <div class="col-lg-12 bg-white shadow p-4 rounded ">
+          <h5 class="text-center mb-4">Check Availability</h5>
+          <form>
+            <div class="row align-items-end">
+              <div class="col-lg-3 mb-3">
+                <label class="form-label" style="font-weight: 500;">Check-in</label>
+                <input type="date" class="form-control shadow-none">
+              </div>
+              <div class="col-lg-3 mb-3">
+                <label class="form-label" style="font-weight: 500;">Check-out</label>
+                <input type="date" class="form-control shadow-none">
+              </div>
+              <div class="col-lg-2 mb-3">
+                <label class="form-label" style="font-weight: 500;">Adult</label>
+                <select class="form-select shadow-none">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 </option>
+                </select>
+              </div>
+              <div class="col-lg-2 mb-3">
+                <label class="form-label" style="font-weight: 500;">Children</label>
+                <select class="form-select shadow-none">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 </option>
+                </select>
+              </div>
+
+              <div class="col-lg-2 mb-lg-3 mt-2">
+                <button type="submit" class="btn btn-success text-white shadow-none">Check Availability</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
 
-
-
-
-
-
+<br><br><br>
+<br><br><br>
+<br><br><br>
 
 
 
@@ -177,6 +250,11 @@
       var swiper = new Swiper(".swiper-container", {
         spaceBetween: 30,
         effect: "fade",
+        loop:true,
+        autoplay:{
+          delay:3500,
+          disabledOnInteraction:false,
+        }
       });
     </script>
 
