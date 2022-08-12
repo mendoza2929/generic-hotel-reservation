@@ -21,7 +21,7 @@
 
 *{
     font-family: 'Poppins',sans-serif;
-
+    
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -36,13 +36,22 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
-
 .availability-form{
   z-index:2;
   margin-top: -100px;
   position: relative;
 }
+
+
+  @media screen and (max-width:575px){
+    .availability-form{
+      margin-top: 25px;
+      padding:0 35px;
+    }
+  }
+
+
+
 </style>
 
 </head>
@@ -96,8 +105,8 @@ input[type=number] {
     </div>
 
     <!---Check Availability--->
-
-    <div class="container availability-form mt-4 ">
+    <div class="availability-form">
+    <div class="container">
       <div class="row">
         <div class="col-lg-12 bg-white shadow p-4 rounded ">
           <h5 class="text-center mb-4">Check Availability</h5>
@@ -141,6 +150,234 @@ input[type=number] {
         </div>
       </div>
     </div>
+    </div>
+
+
+
+  <!--- Our Rooms -->
+
+  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold">OUR ROOMS</h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 my-3">
+      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
+        <img src="./img/room2.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5>Studio Type</h5>
+          <h6 class="mb-4">₱500 per night</h6>
+          <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+          <div class="rating mb-4">
+            <span class="badge rounded-pill bg-light">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </span>
+          </div>
+          <div class="d-flex justify-content-between">
+          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 my-3">
+      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
+        <img src="./img/room2.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5>Studio Type</h5>
+          <h6 class="mb-4">₱500 per night</h6>
+          <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+          <div class="rating mb-4">
+            <span class="badge rounded-pill bg-light">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </span>
+          </div>
+          <div class="d-flex justify-content-between">
+          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 my-3">
+      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
+        <img src="./img/room3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5>Studio Type</h5>
+          <h6 class="mb-4">₱500 per night</h6>
+          <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+          <div class="rating mb-4">
+            <span class="badge rounded-pill bg-light">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </span>
+          </div>
+          <div class="d-flex justify-content-between">
+          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-lg-12 text-center mt-5">
+          <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
+      </div>
+    </div>
+  </div>
+
+
+<!---- OUR FACILITIES--->
+
+<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">OUR FACILITIES</h2>
+
+<div class="container">
+  <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
+    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+      <h5 class="mt-3 font-bold">🛵Free parking on premises
+Outdoor grilling area 
+Fully fenced area with gate that can be locked for safety purposes</h5>
+    </div>
+    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+      <h5 class="mt-3 font-bold">📍Dining:
+Kitchen
+Space where guests can cook their own meals</h5>
+    </div>
+    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+      <h5 class="mt-3 font-bold">📍Bed and bath:
+🛏️Double deck bed is included but without foam
+🚿Bathroom can be locked for safety and privacy</h5>
+    </div>
+    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+      <h5 class="mt-3 font-bold">📍Electricity and Water Bill:
+Each unit is provided with their own electric meter and water meter
+Each room is provided with a main switch located inside the units</h5>
+    </div>
+    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+      <h5 class="mt-3 font-bold">📍Water Source:
+Own water tank: Deep well – no water interruption</h5>
+    </div>
+  </div>
+</div>
+
+
+<!---Testimonials-------------->
+
+<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">TESTIMONIALS</h2>
+
+  <div class="container">
+    <div class="swiper swiper-textinomials">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center p-4">
+            <h6 class="m-0 ms-2">Random user1</h6>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+          </div>
+        </div>
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center p-4">
+            <h6 class="m-0 ms-2">Random user1</h6>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+          </div>
+        </div>
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center p-4">
+            <h6 class="m-0 ms-2">Random user1</h6>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+
+
+
+
+
 
 
 
@@ -237,9 +474,6 @@ input[type=number] {
 
 
 
-
-
-
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
@@ -256,6 +490,41 @@ input[type=number] {
           disabledOnInteraction:false,
         }
       });
+    </script>
+
+    <script>
+      var swiper = new Swiper(".swiper-textinomials",{
+        effect:"coverflow",
+        grabCursor:true,
+        centeredSlides:true,
+        slidesPerView:"auto",
+        slidesPerView:3,
+        loop:true,
+        coverflowEffect:{
+          rotate:50,
+          stretch:0,
+          depth:100,
+          modifier:1,
+          slideShadows:false,
+        },
+        pagination:{
+          el:".swiper-pagin ation",
+        },
+        breakpoints:{
+          320:{
+            slidesPerView:1,
+          },
+          640:{
+            slidesPerView:1,
+          },
+          768:{
+            slidesPerView:2,
+          },
+          1024:{
+            slidesPerView:3,
+          },
+        }
+      })
     </script>
 
 
