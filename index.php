@@ -15,44 +15,7 @@
     />
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-*{
-    font-family: 'Poppins',sans-serif;
-    
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-.availability-form{
-  z-index:2;
-  margin-top: -100px;
-  position: relative;
-}
-
-
-  @media screen and (max-width:575px){
-    .availability-form{
-      margin-top: 25px;
-      padding:0 35px;
-    }
-  }
-
-
-
-</style>
+<link rel="stylesheet" href="css/index.css"/>
 
 </head>
 <body class="bg-light">
@@ -67,19 +30,16 @@ input[type=number] {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active me-3" aria-current="page" href="#">Home</a>
+              <a class="nav-link active me-3" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item"> 
-              <a class="nav-link me-3" href="#">Rooms</a>
+              <a class="nav-link me-3" href="rooms.php">Rooms</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-3" href="#">Facilities</a>
+              <a class="nav-link me-3" href="about.php">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-3" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link me-3" href="#">Contact Us</a>
+              <a class="nav-link me-3" href="contact.php">Contact Us</a>
             </li>
     
           </ul>
@@ -374,16 +334,66 @@ Own water tank: Deep well – no water interruption</h5>
   </div>
 
 
+  <!----REACH US--->
 
+  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold">REACH US</h2>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
+      <iframe class="w-100 rounded" height="320px"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31683.129936677025!2d121.91105677910156!3d6.963088800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32503f58256e7a65%3A0xfd63b6bee8459646!2sAYALA%20Zone%206%20Calle%20San%20Vicente%20Zamboanga%20City!5e0!3m2!1sen!2sph!4v1660398237029!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="col-lg-4 col-md-4">
+          <div class="bg-white p-4 rounded mb-4">
+            <h5 class="text-center">Contact Us</h5>
+            <a href="Phone: 0956 408 0804" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-telephone"></i> 0956 408 0804</a>
+          </div>
+          <div class="bg-white p-4 rounded mb-4">
+            <h5 class="text-center">Follow Us</h5>
+            <a href="#" class="d-inline-block mb-3">
+              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-facebook me-1"></i>Facebook</span>
+            </a>
+            <a href="#" class="d-inline-block mb-3">
+              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram me-1"></i></i>Instagram</span>
+            </a>
+            <a href="#" class="d-inline-block mb-3">
+              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-twitter me-1"></i></i>Twitter</span>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
 
+<!----Footer--->
 
+  <div class="container-fluid bg-white mt-5">
+    <div class="row">
+      <div class="col-lg-4 p-4">
+        <h3 class="fw-bold fs-3 mb-4">KLC HOMES</h3>
+                <p>KLC Homes
+        Calle San Pedro, Zone 1
+        Ayala Zamboanga City
+      </p>
+      </div>
+      <div class="col-lg-4 p-4">
+        <h5 class="mb-3">Links</h5>
+        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
+        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
+        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
+        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
 
+      </div>
+      <div class="col-lg-4 p-4">
+          <h5 class="mb-3">Follow Us</h5>
+          <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">
+             <i class="bi bi-facebook me-1"></i> Facebook
+            </a>
+      </div>
+    </div>
+  </div>
 
+  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
 
-<br><br><br>
-<br><br><br>
-<br><br><br>
 
 
 
@@ -526,6 +536,12 @@ Own water tank: Deep well – no water interruption</h5>
         }
       })
     </script>
+
+
+
+
+
+
 
 
 </body>
