@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLC HOMES - Contact Us</title>
+    <title>KLC HOMES - Rooms</title>
     <link rel = "stylesheet" href="./index.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
@@ -58,40 +58,142 @@
     
 
     <div class="my-5 px-4">
-        <div class="h2 fw-bold text-center">CONTACT US</div>
+        <div class="h2 fw-bold text-center">Our Rooms</div>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">
-     
-Calle San Pedro, Zone 1, Ayala, Zamboanga City, Philippines, 7000
-Address
-
-        </p>
     </div>
 
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-mb-6 mb-5 px-4">
-                <div class="bg-white rounded shadow p-4">
-                <iframe class="w-100 rounded" height="320px"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31683.129936677025!2d121.91105677910156!3d6.963088800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32503f58256e7a65%3A0xfd63b6bee8459646!2sAYALA%20Zone%206%20Calle%20San%20Vicente%20Zamboanga%20City!5e0!3m2!1sen!2sph!4v1660398237029!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <h5>Address</h5>
-                    <a href="https://goo.gl/maps/6EYkUHKmxMipk8eN6" target="_blank" class="d-inline-block text-decoration-none text-dark"><i class="bi bi-geo-alt-fill"></i> Calle San Pedro, Zone 1, Ayala</a>
-                    <h5 class></h5>
-                </div>
-            </div>
-            <div class="col-lg-6 col-mb-6 px-4">
-                <div class="bg-white rounded shadow px-4">
-                   <form >
-                    <h5 class="fw-bold text-center fw-uppercase">Contact with us</h5>
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control shadow-none">
-                    </div>
-                   </form>
-                </div>
-            </div>
+     <div class="col-lg-3 col-mb-12 mb-4 mb-lg-0 px-lg-0">
+   <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow shadow-sm">
+  <div class="container-fluid flex-lg-column align-items-stretch">
+  <h5 class="mt-2 text-center" style="font-size:18px;">Check Availability</h5>
+    <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column" id="filter">
+      <div class="border bg-light p-3 rounded mb-3 mt-2">
+        <h5 class="mb-3" style="font-size:18px;">Check Availability</h5>
+        <label class="form-label">Check-in</label>
+        <input type="date" class="form-control shadow-none mb-3">
+        <label class="form-label">Check-out</label>
+        <input type="date" class="form-control shadow-none">
+      </div>
+      <div class="border bg-light p-3 rounded mb-3 mt-2" >
+        <h5 class="mb-3" style="font-size:18px;">Guest</h5>
+        <div class="d-flex">
+        <div class="me-3">
+          <label class="form-label">Adults</label>
+          <input type="number" class="form-control shadow-none">
         </div>
+        <div>
+          <label class="form-label">Children</label>
+          <input type="number" class="form-control shadow-none">
+        </div>
+        </div>
+      </div>
     </div>
+  </div>
+</nav>
+  </div>
+
+    <div class="col-lg-9 col-mb-12 px-4">
+    <div class="card mb-4 border-0 shadow">
+  <div class="row g-0 p-3 align-items-center">
+    <div class="col-md-5 ">
+      <img src="./img/room1.jpg"class="img-fluid rounded" style="width:90%" alt="...">
+    </div>
+    <div class="col-md-4">
+      <h5 class="mb-5 mt-2 text-center">Studio Type</h5>
+      <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+    </div>
+    <div class="col-md-2 text-center mt-lg-0 mt-md-0 mt-4">
+    <h6 class="mb-4">₱500 per night</h6>
+    <a href="#" class="btn btn-success w-100 text-white shadow-none mb-2">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
+    </div>
+  </div>
+</div>
+<div class="card mb-4 border-0 shadow">
+  <div class="row g-0 p-3 align-items-center">
+    <div class="col-md-5">
+      <img src="./img/room1.jpg"class="img-fluid rounded" style="width:90%" alt="...">
+    </div>
+    <div class="col-md-4">
+      <h5 class="mb-5">Studio Type</h5>
+      <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+    </div>
+    <div class="col-md-2 text-center">
+    <h6 class="mb-4">₱500 per night</h6>
+    <a href="#" class="btn btn-success w-100 text-white shadow-none mb-2">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4 border-0 shadow">
+  <div class="row g-0 p-3 align-items-center">
+    <div class="col-md-5">
+      <img src="./img/room3.jpg"class="img-fluid rounded" style="width:90%" alt="...">
+    </div>
+    <div class="col-md-4">
+      <h5 class="mb-5">Studio Type</h5>
+      <div class="features mb-4">
+            <h6 class="mb-1">Amenities</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Monitored with 24/7
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            With parking area
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            NO CURFEW
+            </span>
+            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
+            Flood free area
+            </span>
+          </div>
+    </div>
+    <div class="col-md-2 text-center">
+    <h6 class="mb-4">₱500 per night</h6>
+    <a href="#" class="btn btn-success w-100 text-white shadow-none mb-2">Book Now!</a>
+          <a href="#" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
+    </div>
+  </div>
+</div>
+
+    </div>
+   </div>
+  </div>
 
 
 

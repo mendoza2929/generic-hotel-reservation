@@ -461,7 +461,7 @@ Own water tank: Deep well – no water interruption</h5>
                   </div>
                   <div class="col-md-12 p-0 mb-3">
                     <label class="form-label">Address</label>
-                    <textarea class="form-control shadow-none" rows="1"></textarea>
+                    <textarea class="form-control shadow-none" rows="3" style="resize: none;"></textarea>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Password</label>
