@@ -2,6 +2,7 @@
 
 *{
     font-family: 'Poppins',sans-serif;
+    scroll-behavior: smooth;
     
 }
 
@@ -10,6 +11,8 @@
     --teal_hover:#279e8c;
 
 }
+
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

@@ -80,22 +80,12 @@ Address
                 </div>
             </div>
             <div class="col-lg-6 col-mb-6 px-4">
-                <div class="bg-white rounded shadow p-4">
-                   <form>
-                    <div class="mt-3">
-                      <div class="label form-label" style="font-weight:500;">Name</div>
-                      <input type="text" class="form-control" shadow-none>
-                    </div>
-                    <div class="mt-3">
-                      <div class="label form-label" style="font-weight:500;">Email</div>
-                      <input type="email" required class="form-control" shadow-none>
-                    </div>
-                    <div class="mt-3">
-                      <div class="label form-label" style="font-weight:500;">Message</div>
-                      <textarea class="form-control shadow-none" style="resize:none;" rows="5"></textarea>
-                    </div>
-                    <div class="text-center">
-                    <button type="submit" class="btn btn-success shadow-none mt-3"><i class="bi bi-messenger"></i> Send</button>
+                <div class="bg-white rounded shadow px-4">
+                   <form >
+                    <h5 class="fw-bold text-center fw-uppercase">Contact with us</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control shadow-none">
                     </div>
                    </form>
                 </div>
