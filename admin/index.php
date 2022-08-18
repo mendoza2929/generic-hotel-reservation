@@ -18,7 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin KLC</title>
     <!-- CSS only -->
-<link rel="stylesheet" href="style.css" type="text/css">
+    
+<Link rel="stylesheet" href="stylesheet.css"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check-circle-fill" viewBox="0 0 16 16">
@@ -35,22 +36,25 @@
 
 <body class="bg-light">
     
-    <div class="login-form text-center rounded bg-white shadow overflow-hidden">
-        <form method="POST" >
-            <h4 class="bg-dark text-white py-3 ">Admin KLC</h4>
-            <div class="p-4">
-                <div class="mb-3">
-                   
-                    <input name="admin_name" required type="email" class="form-control shadow-none text-center" placeholder="Email" > 
-                </div>
-                <div class="mb-4">
-       
-                    <input name="admin_pass" required   type="password" class="form-control shadow-none text-center" placeholder="Password" >
-                </div>
-                <button name="login"type="submit" class="btn-primary text-black custom-bg shadow-none" >Login</button>
-            </div>
-        </form>
-    </div>
+  <div class="login-form text-center rounded bg-white shadow overflow-hidden">
+      <form method="POST" >
+          <h4 class="bg-secondary text-white py-3 ">ADMIN KLC</h4>
+          <div class="p-4">
+              <div class="mb-3">
+                  
+                  <input name="admin_name" required type="email" class="form-control shadow-none text-center" placeholder="Email" > 
+              </div>
+              <div class="mb-4">
+      
+                  <input name="admin_pass" required   type="password" class="form-control shadow-none text-center" placeholder="Password" >
+              </div>
+            
+              <button name="login" type="submit" class="btn btn-success shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+        </button>
+          </div>
+      </form>
+  </div>
 
 
     <?php 

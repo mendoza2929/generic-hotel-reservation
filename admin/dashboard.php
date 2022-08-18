@@ -14,16 +14,23 @@ adminLogin();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>KLC HOMES - DASHBOARD</title>
     <!-- CSS only -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body class="bg-light">
  
 
-    <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between">
-        <h3 class="mb-0">KLC ADMIN</h3>
-        <a href="logout.php" class="btn btn-light btn-sm">Logout</a>
+  <?php require('header.php') ?>
+
+    <div class="container-fluid" id="main-content">
+      <div class="row">
+        <div class="col-lg-10 ms-auto p-4 overflow-hidden">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero totam voluptatum, exercitationem ea nihil, iste qui rem soluta sit laborum, officiis a atque praesentium. Deleniti ducimus porro fugit minima amet?
+        </div>
+      </div>
     </div>
 
 

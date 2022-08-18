@@ -45,7 +45,7 @@
           </ul>
           <div class="d-flex">
           <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-              Login
+          <i class="bi bi-box-arrow-in-right"></i> Login
           </button>
           </div>
         </div>

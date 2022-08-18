@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+*{
+    font-family: 'Poppins',sans-serif;
+} 
+
+#dashboard{
+    position: fixed;
+    height: 100%;
+}
+
+
+@media screen and (max-width:992px){
+    #dashboard{
+       height: auto;
+       width: 100%;
+    }
+
+    #main-content{
+        margin-top: 60px;
+    }
+    
+}
