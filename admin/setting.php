@@ -1,6 +1,8 @@
 <?php 
 
 require("alert.php");
+require("db.php");
+require('script.php');
 adminLogin();
 // session_regenerate_id(true);
 
@@ -58,7 +60,7 @@ adminLogin();
               <div class="modal-body">
                 <div class="mb-3">
                   <label class="form-label">Site Title</label>
-                  <input type="text" name="site_title" id="site_title_input" class="form-control" placeholder="shadow-none">
+                  <input type="text" name="site_title" id="site_title_input" class="form-control shadow-none">
                 </div>
                 <div class="mb-3">
                   <label class="form-label">About</label>
@@ -67,7 +69,7 @@ adminLogin();
               </div>
               <div class="modal-footer">
                 <button type="button" onclick="site_title.value = general_data.site_title,site_about.value = general_data.site_about" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success shadow-none">Save</button>
+                <button type="button" onclick="upd_general(site_title.value,site_about.value)" class="btn btn-success shadow-none">Save</button>
               </div>
             </form>
             </div>
@@ -109,6 +111,33 @@ adminLogin();
     }
 
     xhr.send('get_general');
+  }
+
+  function upd_general(site_title_val,site_about_val){
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","settings_crud.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+    xhr.onload = function(){
+      var myModalEl = document.getElementById('setting')
+      var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+      modal.hide();
+
+
+      if(this.responseText== 1){
+        
+       alerts('success',"changes saved")
+        get_general();
+      }
+      else{
+        alerts('error',"changes saved")
+      }
+
+
+     
+    }
+
+    xhr.send('site_title='+site_title_val+'&site_about='+site_about_val+'&upd_general');
   }
 
   window.onload = function(){

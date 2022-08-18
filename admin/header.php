@@ -14,13 +14,13 @@
     <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column" id="admin">
         <ul class="nav nav-pills flex-column">
           <li class="nav-item">
-            <a class="nav-link text-white ms-3" href="#"><i class="bi bi-house-door"></i> Rooms</a>
+            <a class="nav-link text-white ms-5" href="#"><i class="bi bi-house-door"></i> Rooms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white ms-3" href="#"><i class="bi bi-people"></i> Users</a>
+            <a class="nav-link text-white  ms-5" href="#"><i class="bi bi-people"></i> Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white ms-3" href="setting.php"><i class="bi bi-gear"></i> Setting</a>
+            <a class="nav-link text-white  ms-5" href="setting.php"><i class="bi bi-gear"></i> Setting</a>
           </li>
         </ul>
     </div>
