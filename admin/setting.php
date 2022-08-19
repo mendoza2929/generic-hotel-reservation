@@ -34,7 +34,7 @@ adminLogin();
 
           <!---- Settings section -------------------->
 
-        <div class="card">
+        <div class="card border-0 shadow-sm ">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
               <h5 class="card-title m-0">General Settings</h5>
@@ -43,7 +43,7 @@ adminLogin();
           </button>
             </div>
             <h6 class="card-subtitle mb-1 fw-bold">Site Title</h6>
-            <p class="card-text" id="site_title"> "></p>
+            <p class="card-text" id="site_title"></p>
             <h6 class="card-subtitle mb-1 fw-bold">About Us</h6>
             <p class="card-text" id="site_about"></p>
           </div>
@@ -80,7 +80,24 @@ adminLogin();
 
   <!--- Shutdown settings-->
 
-  
+    
+  <div class="card border-0">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="card-title m-0">There are no reservations.</h5>
+              <div class="form-check form-switch">
+                <form>
+                <div class="form-check form-switch">
+                  <input onchange="upd_shutdown(this.value)" class="form-check-input shadow-none" type="checkbox" role="switch" id="shutdown" >
+                </div>
+                </form>
+              </div>
+          </button>
+            </div>
+            <p class="card-text" id="site_about">
+            When there are no available rooms, shutdown mode is activated, and no clients are permitted to make reservations.
+            </p>
+          </div>
 
         </div>
       </div>
@@ -103,6 +120,7 @@ require ("script.php");
     let site_title_input =document.getElementById('site_title_input');
     let site_about_input =document.getElementById('site_about_input');
 
+    let shutdown = document.getElementById('shutdown'); 
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST","settings_crud.php",true);
@@ -117,6 +135,15 @@ require ("script.php");
       site_title_input.value = general_data.site_title;
       site_about_input.value = general_data.site_about;
      
+
+      if(general_data.shutdown == 0){
+        shutdown.checked=false;
+        shutdown.value=0;
+      }else{
+        shutdown.checked=true;
+        shutdown.value=1;
+      }
+
     }
 
     xhr.send('get_general');
@@ -147,6 +174,26 @@ require ("script.php");
     }
 
     xhr.send('site_title='+site_title_val+'&site_about='+site_about_val+'&upd_general');
+  }
+
+  function upd_shutdown(val){
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","settings_crud.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+    xhr.onload = function(){
+
+      if(this.responseText== 1 && general_data.shutdown==0){
+        
+      alert('success', 'Shutdown mode is activated');
+      }
+      else{
+      alert('success', 'Shutdown mode is turned off');
+      }
+      get_general();
+    }
+
+    xhr.send('upd_shutdown='+val);
   }
 
   window.onload = function(){
