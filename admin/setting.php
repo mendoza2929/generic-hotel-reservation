@@ -2,7 +2,7 @@
 
 require("alert.php");
 require("db.php");
-require('script.php');
+
 adminLogin();
 // session_regenerate_id(true);
 
@@ -18,7 +18,7 @@ adminLogin();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES - Setting</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dash.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -47,8 +47,9 @@ adminLogin();
             <h6 class="card-subtitle mb-1 fw-bold">About Us</h6>
             <p class="card-text" id="site_about"></p>
           </div>
+          
 
-                <!-- Setting Modal -->
+    <!-- Setting Modal -->
     
         <div class="modal fade" id="setting" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -76,13 +77,21 @@ adminLogin();
           </div>
         </div>
 
+
+  <!--- Shutdown settings-->
+
+  
+
         </div>
       </div>
     </div>
+    
 
 
  <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>   
+ <?php 
+require ("script.php");
+?>      
 
 <script>
   let general_data;
@@ -126,11 +135,11 @@ adminLogin();
 
       if(this.responseText== 1){
         
-       alerts('success',"changes saved")
+      alert('success', 'Sucessfully Change')
         get_general();
       }
       else{
-        alerts('error',"changes saved")
+      alert('error', 'No Changes')
       }
 
 
@@ -144,7 +153,7 @@ adminLogin();
     get_general();
   }
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>   
 
 </body>
 </html>
