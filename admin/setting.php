@@ -175,7 +175,7 @@ adminLogin();
 require ("script.php");
 ?>   
 <script>
-  let general_data;
+  let general_data, contacts_data;
 
   let general_s_form = document.getElementById('general_s_form');
   let site_title_input =document.getElementById('site_title_input');
@@ -217,7 +217,6 @@ require ("script.php");
   general_s_form.addEventListener('submit', function(e){
     e.preventDefault();
     upd_general(site_title_input.value,site_about_input.value);
-
 
 
   })
@@ -269,8 +268,31 @@ require ("script.php");
     xhr.send('upd_shutdown='+val);
   }
 
+  function get_contacts(){
+    
+    let contacts_p_id = ['address','gmap','pn1','email','fb','insta','tw'];
+    let iframe = document.getElementById('iframe');
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","settings_crud.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+    xhr.onload = function(){
+
+      contacts_data = JSON.parse(this.responseText);
+      console.log(contacts_data);
+
+
+    
+
+    }
+
+    xhr.send('get_contacts');
+  }
+
   window.onload = function(){
     get_general();
+    get_contacts();
   }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>   
