@@ -117,28 +117,27 @@ adminLogin();
             <div class="row">
               <div class="col-lg-6">
                 <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">Address</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-geo-alt"></i> Address</h6>
                 <p class="card-text" id="address"></p>
                 </div>
                 <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">location</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-map"></i> location</h6>
                 <p class="card-text" id="gmap"></p>
                 </div>
                 <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">Contact</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-telephone-inbound"></i> Contact</h6>
                 <p class="card-text mb-1">
-                  <i class="bi bi-telephone-inbound"></i>
                   <span id="pn1"></span>
                 </p>
                 </div>
                 <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">Email</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-envelope"></i> Email</h6>
                 <p class="card-text" id="email"></p>
                 </div>
               </div>
               <div class="col-lg-6">
               <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">Social Media</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-collection"></i> Social Media</h6>
                 <p class="card-text mb-2">
                 <i class="bi bi-facebook"></i>
                   <span id="fb"></span>
@@ -153,14 +152,94 @@ adminLogin();
                 </p>
                 </div>
                 <div class="mb-4">
-                <h6 class="card-subtitle mb-1 fw-bold">Location Maps</h6>
+                <h6 class="card-subtitle mb-1 fw-bold"><i class="bi bi-compass"></i> Location Maps</h6>
                   <iframe id="iframe"class="border p-2 w-100"loading="lazy"></iframe>
                 </div>
               </div>
             </div>
-
           </div>
 
+
+          
+    <!-- Contact Modal -->
+    
+        <div class="modal fade" id="contact-settings" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <form id="contacts_s_form">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Contacts Settings</h5>
+              </div>
+              <div class="modal-body">
+
+                  <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Address</label>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                              <input type="text" name="address" id="address_input" class="form-control shadow-none" required>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Google Map Link</label>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text"><i class="bi bi-map"></i></span>
+                              <input type="text" name="gmap" id="gmap_input" class="form-control shadow-none" required>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Contact Numbers:</label>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
+                              <input type="text" name="pn1" id="pn1_input" class="form-control shadow-none" required>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text"><i class="bi bi-map"></i></span>
+                              <input type="email" name="email" id="email_input" class="form-control shadow-none" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                              <label class="form-label fw-bold">Social Media</label>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-facebook"></i></span>
+                                <input type="text" name="fb" id="fb_input" class="form-control shadow-none" required>
+                              </div>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-instagram"></i></span>
+                                <input type="text" name="insta" id="insta_input" class="form-control shadow-none" required>
+                              </div>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-twitter"></i></span>
+                                <input type="text" name="tw" id="tw_input" class="form-control shadow-none" required>
+                              </div>
+                              <div class="mb-3">
+                              <label class="form-label fw-bold">iFrame Src</label>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-compass"></i></span>
+                                <input type="text" name="iframe" id="iframe_input" class="form-control shadow-none" required>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" onclick="contacts_input(contacts_data)" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit"  class="btn btn-success shadow-none">Save</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
 
 
 
@@ -180,6 +259,8 @@ require ("script.php");
   let general_s_form = document.getElementById('general_s_form');
   let site_title_input =document.getElementById('site_title_input');
   let site_about_input =document.getElementById('site_about_input');
+  let contacts_s_form = document.getElementById('contacts_s_form');
+ 
 
   function get_general(){
     let site_title =document.getElementById('site_title');
@@ -280,15 +361,70 @@ require ("script.php");
     xhr.onload = function(){
 
       contacts_data = JSON.parse(this.responseText);
-      console.log(contacts_data);
-
-
-    
+      contacts_data = Object.values(contacts_data);
+   
+        for(i=0; i<contacts_p_id.length; i++){
+          document.getElementById(contacts_p_id[i]).innerText = contacts_data[i+1];
+        }
+      
+        iframe.src=contacts_data[8];
+        contacts_input(contacts_data);
 
     }
 
     xhr.send('get_contacts');
   }
+
+    function contacts_input(data){
+        let contacts_input_id = ['address_input','gmap_input','pn1_input','email_input','fb_input','insta_input','tw_input','iframe_input'];
+         
+        for(i=0;i<contacts_input_id.length;i++){
+          document.getElementById(contacts_input_id[i]).value = data[i+1];
+        }
+      }
+
+      contacts_s_form.addEventListener('submit',function(e){
+        e.preventDefault();
+        upd_contacts();
+      })
+
+
+      function upd_contacts(){
+        let index =  ['address','gmap','pn1','email','fb','insta','tw','iframe'];
+        let contacts_input_id = ['address_input','gmap_input','pn1_input','email_input','fb_input','insta_input','tw_input','iframe_input']
+        
+        let data_str="";
+
+        for(i=0;i<index.length;i++){
+          data_str += index[i] + "="+document.getElementById(contacts_input_id[i]).value + '&';
+        }
+
+      
+    
+        data_str += "upd_contacts";
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","settings_crud.php",true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        
+
+        xhr.onload = function(){
+          var myModalEl = document.getElementById('contact-settings')
+          var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+          modal.hide();
+
+          if(this.responseText== 1){
+            alert('success', 'Successfully Change');
+            get_contacts();
+            }
+            else{
+            alert('error', 'No changes');
+            }
+  
+        }
+
+        xhr.send(data_str);
+      }
 
   window.onload = function(){
     get_general();

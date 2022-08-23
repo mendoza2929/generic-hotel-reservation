@@ -7,8 +7,9 @@
             echo "
             <script>window.location.href='index.php';</script>
              ";
+             exit;
         }
-        session_regenerate_id(true);
+        
     }
 
 
@@ -18,6 +19,7 @@
         echo "
             <script>window.location.href='$url';</script>
         ";
+        exit;
     }
 
 
