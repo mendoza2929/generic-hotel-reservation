@@ -3,6 +3,8 @@
 require("alert.php");
 require("db.php");
 
+
+
 adminLogin();
 // session_regenerate_id(true);
 
@@ -27,12 +29,14 @@ adminLogin();
 
   <?php require('header.php') ?>
 
+  
     <div class="container-fluid" id="main-content">
       <div class="row">
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-          <h3 class="mb-4">Settings</h3>
+          <h3 class="mb-4"><i class="bi bi-gear"></i> Settings</h3>
 
           <!---- Settings section -------------------->
+ 
 
         <div class="card border-0 shadow-sm ">
           <div class="card-body">
@@ -53,24 +57,24 @@ adminLogin();
     
         <div class="modal fade" id="setting" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <form>
+            <form id="general_s_form">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title"><i class="bi bi-pencil-square"></i> General Settings</h5>
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label class="form-label">Site Title</label>
-                  <input type="text" name="site_title" id="site_title_input" class="form-control shadow-none">
+                  <label class="form-label fw-bold">Site Title</label>
+                  <input type="text" name="site_title" id="site_title_input" class="form-control shadow-none" required>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">About</label>
-                <textarea name="site_about" id="site_about_input" class="form-control shadow-none" rows="5"></textarea>
+                  <label class="form-label fw-bold">About</label>
+                <textarea name="site_about" id="site_about_input" class="form-control shadow-none" rows="5" required></textarea>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" onclick="site_title.value = general_data.site_title,site_about.value = general_data.site_about" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" onclick="upd_general(site_title.value,site_about.value)" class="btn btn-success shadow-none">Save</button>
+                <button type="submit"  class="btn btn-success shadow-none">Save</button>
               </div>
             </form>
             </div>
@@ -99,6 +103,67 @@ adminLogin();
             </p>
           </div>
 
+
+           <!--- Contact Us  settings-->
+
+           <div class="card border-0 shadow-sm ">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="card-title m-0">Contact Us Settings</h5>
+              <button type="button" class="btn btn-warning shadow-none btn-sm fw-bold " data-bs-toggle="modal" data-bs-target="#contact-settings">
+              <i class="bi bi-pencil-square"></i> Edit
+          </button>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">Address</h6>
+                <p class="card-text" id="address"></p>
+                </div>
+                <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">location</h6>
+                <p class="card-text" id="gmap"></p>
+                </div>
+                <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">Contact</h6>
+                <p class="card-text mb-1">
+                  <i class="bi bi-telephone-inbound"></i>
+                  <span id="pn1"></span>
+                </p>
+                </div>
+                <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">Email</h6>
+                <p class="card-text" id="email"></p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">Social Media</h6>
+                <p class="card-text mb-2">
+                <i class="bi bi-facebook"></i>
+                  <span id="fb"></span>
+                </p>
+                <p class="card-text mb-2">
+                <i class="bi bi-instagram"></i>
+                  <span id="insta"></span>
+                </p>
+                <p class="card-text mb-2">
+                <i class="bi bi-twitter"></i>
+                  <span id="tw"></span>
+                </p>
+                </div>
+                <div class="mb-4">
+                <h6 class="card-subtitle mb-1 fw-bold">Location Maps</h6>
+                  <iframe id="iframe"class="border p-2 w-100"loading="lazy"></iframe>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
         </div>
       </div>
     </div>
@@ -108,17 +173,17 @@ adminLogin();
  <!-- JavaScript Bundle with Popper -->
  <?php 
 require ("script.php");
-?>      
-
+?>   
 <script>
   let general_data;
+
+  let general_s_form = document.getElementById('general_s_form');
+  let site_title_input =document.getElementById('site_title_input');
+  let site_about_input =document.getElementById('site_about_input');
 
   function get_general(){
     let site_title =document.getElementById('site_title');
     let site_about  =document.getElementById('site_about');
-
-    let site_title_input =document.getElementById('site_title_input');
-    let site_about_input =document.getElementById('site_about_input');
 
     let shutdown = document.getElementById('shutdown'); 
 
@@ -148,6 +213,14 @@ require ("script.php");
 
     xhr.send('get_general');
   }
+
+  general_s_form.addEventListener('submit', function(e){
+    e.preventDefault();
+    upd_general(site_title_input.value,site_about_input.value);
+
+
+
+  })
 
   function upd_general(site_title_val,site_about_val){
     let xhr = new XMLHttpRequest();

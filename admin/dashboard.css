@@ -11,10 +11,12 @@
 
 .setting-alert{
     position:fixed;
-    bottom:5px;
+    bottom: 50rem;
     left:77%;
     width: 20%;
 }
+
+
 
 
 @media screen and (max-width:992px){
