@@ -65,21 +65,20 @@ require('admin/alert.php');
 
 
     <!----ABOUT MAIN--->
+
+    <?php 
+
+$home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+$values = [2];
+$home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+
+?>
     
 
     <div class="my-5 px-4">
         <div class="h2 fw-bold text-center">ABOUT US</div>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">
-        KLC Homes
-Calle San Pedro, Zone 1
-Ayala, Zamboanga City
-📍 2-storey apartment building with 20 UNITS
-2-minute walk to the main highway 
-5-minute walk to Ayala Parish Church 
-7-minute walk to Budgetwise 
-7-minute walk to the Police Station
-10-minute walk to ZAMCELCO
+        <p class="text-center mt-3"> 
         </p>
     </div>
 
@@ -87,31 +86,7 @@ Ayala, Zamboanga City
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 col-mb-5 mb-4 order-lg-1 order-mb-1 order-2">
                 <h3 class="mb-3">KLC HOMES</h3>
-                <p>For inquiries, please leave a message or txt/call: 0936 125 8157📞</p>
-                <span>Amenities:
-- Monitored with 24/7 CCTV (soon)
-- 20 spacious rooms with single to quadruple occupancy
-- With parking area
-- NO CURFEW
-- Flood free area
-See to appreciate!</span>
-<span><br>
-📍Facilities:
-🛵Free parking on premises
-Outdoor grilling area 
-Fully fenced area with gate that can be locked for safety purposes <br>
-📍Dining:
-Kitchen
-Space where guests can cook their own meals<br>
-📍Bed and bath:
-🛏️Double deck bed is included but without foam
-🚿Bathroom can be locked for safety and privacy<br>
-📍Electricity and Water Bill:
-Each unit is provided with their own electric meter and water meter
-Each room is provided with a main switch located inside the units<br>
-📍Water Source:
-Own water tank: Deep well – no water interruption
-</span>
+                <h5> <?php echo $home_r['site_about']?>  </h5>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-1 order-mb-2 order-1">
                 <img src="./img/b3.jpg" class="w-100" alt="">
@@ -194,6 +169,91 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
 
+
+
+ <!-- Login Modal -->
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form>
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-check-fill fs-3 me-2"></i>User login</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control shadow-none">
+                </div>
+                <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control shadow-none">
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <button type="submit" class="btn btn-success mb-2">Login</button>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Don't Have an Account?</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Register Modal -->
+      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+              <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
+                Note: Your Details must match with your ID that will be required  during check-in.
+              </span>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="number" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Picture</label>
+                    <input type="file" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-12 p-0 mb-3">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-control shadow-none" rows="3" style="resize: none;"></textarea>
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control shadow-none">
+                  </div>
+                </div>
+                <div class="text-center my-1">
+                  <button type="submit" class="btn btn-success shadow-none">Register</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
     

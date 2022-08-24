@@ -280,6 +280,91 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
 
 
+ <!-- Login Modal -->
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form>
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-check-fill fs-3 me-2"></i>User login</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control shadow-none">
+                </div>
+                <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control shadow-none">
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <button type="submit" class="btn btn-success mb-2">Login</button>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Don't Have an Account?</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Register Modal -->
+      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+              <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
+                Note: Your Details must match with your ID that will be required  during check-in.
+              </span>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="number" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Picture</label>
+                    <input type="file" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-12 p-0 mb-3">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-control shadow-none" rows="3" style="resize: none;"></textarea>
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control shadow-none">
+                  </div>
+                </div>
+                <div class="text-center my-1">
+                  <button type="submit" class="btn btn-success shadow-none">Register</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
 
     
 <!-- JavaScript Bundle with Popper -->

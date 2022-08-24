@@ -12,7 +12,9 @@
 
 }
 
-
+.nav-user{
+  background-color: #279e8c;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -45,4 +47,11 @@ input[type=number] {
     width: 150px;
     margin:0 auto;
     height: 1.7px;
+}
+
+.custom-alert{
+  position:fixed;
+  bottom: 55rem;
+  left:68%;
+  width: 30%;
 }
