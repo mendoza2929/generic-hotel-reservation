@@ -4,6 +4,18 @@
     font-family: 'Poppins',sans-serif;
 } 
 
+.navbar-admin a:hover{
+    background-color:#efc8b1;
+}
+
+.admin-dash{
+    background-color: #722620;
+}
+
+.admin-navbar{
+    background-color: #30110d;
+}
+
 #dashboard{
     position: fixed;
     height: 100%;

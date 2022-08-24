@@ -1,3 +1,13 @@
+
+<?php 
+
+require('admin/db.php');
+require('admin/alert.php');
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +31,7 @@
 <body class="bg-light">
 
 
-    <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand me-5 fw-bold fs-3" href="index.php">KLC HOMES</a>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +62,7 @@
       </div>
     </nav>
 
+  
 
     <!-- Swiper -->
     <div class="container-fluid px-lg-4 mt-2">
@@ -336,29 +347,77 @@ Own water tank: Deep well – no water interruption</h5>
 
   <!----REACH US--->
 
+  <?php 
+
+    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+    $values = [1];
+    $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
+    // print_r($contact_r);
+  ?>
+
+
   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold">REACH US</h2>
 
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-      <iframe class="w-100 rounded" height="320px"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31683.129936677025!2d121.91105677910156!3d6.963088800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32503f58256e7a65%3A0xfd63b6bee8459646!2sAYALA%20Zone%206%20Calle%20San%20Vicente%20Zamboanga%20City!5e0!3m2!1sen!2sph!4v1660398237029!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="w-100 rounded" height="320px"src="<?php echo $contact_r['iframe']?>"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="col-lg-4 col-md-4">
           <div class="bg-white p-4 rounded mb-4">
             <h5 class="text-center">Contact Us</h5>
-            <a href="Phone: 0956 408 0804" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-telephone"></i> 0956 408 0804</a>
+            <a href="Phone: 0956 408 0804" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-telephone"></i> <?php echo $contact_r['pn1']?></a>
           </div>
           <div class="bg-white p-4 rounded mb-4">
             <h5 class="text-center">Follow Us</h5>
-            <a href="#" class="d-inline-block mb-3">
+            <?php
+            
+            if($contact_r['fb']!=''){
+              echo<<<data
+
+              <a href="$contact_r[fb]" target="_blank" class="d-inline-block mb-3">
               <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-facebook me-1"></i>Facebook</span>
-            </a>
-            <a href="#" class="d-inline-block mb-3">
+              </a>
+
+              data;
+            }
+            
+            ?>
+
+            <?php 
+            
+            if($contact_r['insta']!=''){
+              echo<<<data
+              
+              <a href="$contact_r[insta]" target="_blank" class="d-inline-block mb-3">
               <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram me-1"></i></i>Instagram</span>
-            </a>
-            <a href="#" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-twitter me-1"></i></i>Twitter</span>
-            </a>
+              </a>
+
+              data;
+            }
+            
+            ?>
+
+            <?php 
+            
+            if($contact_r['tw']!=''){
+              echo<<<data
+              
+              <a href="$contact_r[tw]" target="_blank" class="d-inline-block mb-3">
+              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram me-1"></i></i>Instagram</span>
+              </a>
+
+              data;
+            }
+            
+            ?>
+
+
+            
+          
+
+
+          
           </div>
       </div>
     </div>
@@ -377,17 +436,52 @@ Own water tank: Deep well – no water interruption</h5>
       </div>
       <div class="col-lg-4 p-4">
         <h5 class="mb-3">Links</h5>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
+        <a href="index.php" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
+        <a href="rooms.php" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
+        <a href="about.php" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
+        <a href="contact.php" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
 
       </div>
       <div class="col-lg-4 p-4">
           <h5 class="mb-3">Follow Us</h5>
-          <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">
-             <i class="bi bi-facebook me-1"></i> Facebook
-            </a>
+          <?php 
+                      if($contact_r['fb']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-facebook me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                    <?php 
+                      if($contact_r['insta']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[insta]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-instagram me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                  <?php 
+                      if($contact_r['tw']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[tw]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-twitter me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
       </div>
     </div>
   </div>
@@ -395,10 +489,8 @@ Own water tank: Deep well – no water interruption</h5>
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
 
 
-
-
-      <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- Login Modal -->
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <form>
@@ -480,6 +572,7 @@ Own water tank: Deep well – no water interruption</h5>
           </div>
         </div>
       </div>
+
 
 
 

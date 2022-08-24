@@ -1,3 +1,16 @@
+
+
+
+<?php 
+
+require('admin/db.php');
+require('admin/alert.php');
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,19 +77,75 @@
      
 Calle San Pedro, Zone 1, Ayala, Zamboanga City, Philippines, 7000
 Address
-
         </p>
     </div>
+
+    
+  <?php 
+
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+$values = [1];
+$contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
+// print_r($contact_r);
+?>
+
 
 
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-mb-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4">
-                <iframe class="w-100 rounded" height="320px"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31683.129936677025!2d121.91105677910156!3d6.963088800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32503f58256e7a65%3A0xfd63b6bee8459646!2sAYALA%20Zone%206%20Calle%20San%20Vicente%20Zamboanga%20City!5e0!3m2!1sen!2sph!4v1660398237029!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="w-100 rounded" height="320px"src="<?php echo $contact_r['iframe']?>" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <h5>Address</h5>
-                    <a href="https://goo.gl/maps/6EYkUHKmxMipk8eN6" target="_blank" class="d-inline-block text-decoration-none text-dark"><i class="bi bi-geo-alt-fill"></i> Calle San Pedro, Zone 1, Ayala</a>
-                    <h5 class></h5>
+                    <a href="<?php echo $contact_r['gmap']?>" target="_blank" class="d-inline-block text-decoration-none text-dark"><i class="bi bi-geo-alt-fill"></i> <?php echo $contact_r['address']?></a>
+                    <h5 class="mt-4">Call Us</h5>
+                    <a href="<?php echo $contact_r['pn1']?>" class="d-inline-block mb-2 text-decoration-none text-dark">
+                      <i class="bi bi-telephone-fill"> <?php echo $contact_r['pn1']?></i>
+                    </a>
+                    <h5 class="mt-4">Email Us</h5>
+                    <a href="mailto: <?php echo $contact_r['email']?>" class="d-inline-block mb-2 text-decoration-none text-dark">
+                    <i class="bi bi-email-fill"> <?php echo $contact_r['email']?></i>
+                    </a>
+                    <h5 class="mt-4">Follow Us</h5>
+                    <?php 
+                      if($contact_r['fb']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-facebook me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                    <?php 
+                      if($contact_r['insta']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[insta]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-instagram me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                  <?php 
+                      if($contact_r['tw']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[tw]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-twitter me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+                    
                 </div>
             </div>
             <div class="col-lg-6 col-mb-6 px-4">
@@ -118,17 +187,52 @@ Address
       </div>
       <div class="col-lg-4 p-4">
         <h5 class="mb-3">Links</h5>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
+        <a href="index.php" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
+        <a href="rooms.php" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
+        <a href="about.php" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
+        <a href="contact.php" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
 
       </div>
       <div class="col-lg-4 p-4">
           <h5 class="mb-3">Follow Us</h5>
-          <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">
-             <i class="bi bi-facebook me-1"></i> Facebook
-            </a>
+          <?php 
+                      if($contact_r['fb']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-facebook me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                    <?php 
+                      if($contact_r['insta']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[insta]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-instagram me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                  <?php 
+                      if($contact_r['tw']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[tw]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-twitter me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
       </div>
     </div>
   </div>

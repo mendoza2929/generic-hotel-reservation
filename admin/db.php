@@ -15,13 +15,21 @@
 
  function filteration($data){
    foreach($data as $key => $value){
-     $data[$key] = trim($value);
-     $data[$key] = stripcslashes($value);
-     $data[$key] = htmlspecialchars($value);
-     $data[$key] = strip_tags($value);
+    // 'site_title' : 'klchomes'
+    $value = trim($value);
+    $value = stripcslashes($value);
+    $value = strip_tags($value);
+    $value = htmlspecialchars($value);
+
+    $data[$key] = $value;
    }
 
    return $data;
+ }
+
+ function selectAll($table){
+  $con = $GLOBALS['con'];
+  $res = mysqli_query($con,"SELECT * FROM $table");
  }
 
  function select($sql,$values,$datatypes){

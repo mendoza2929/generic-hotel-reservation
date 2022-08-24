@@ -1,3 +1,13 @@
+
+
+<?php 
+
+require('admin/db.php');
+require('admin/alert.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,6 +205,13 @@
    </div>
   </div>
 
+  <?php 
+
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+$values = [1];
+$contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
+// print_r($contact_r);
+?>
 
 
     <!----Footer--->
@@ -210,17 +227,52 @@
       </div>
       <div class="col-lg-4 p-4">
         <h5 class="mb-3">Links</h5>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
-        <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
+        <a href="index.php" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
+        <a href="rooms.php" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
+        <a href="about.php" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
+        <a href="contact.php" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
 
       </div>
       <div class="col-lg-4 p-4">
           <h5 class="mb-3">Follow Us</h5>
-          <a href="#" class="d-inline-block mb-2 text-decoration-none text-dark">
-             <i class="bi bi-facebook me-1"></i> Facebook
-            </a>
+          <?php 
+                      if($contact_r['fb']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-facebook me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                    <?php 
+                      if($contact_r['insta']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[insta]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-instagram me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
+
+                  <?php 
+                      if($contact_r['tw']!=''){
+                        echo<<<data
+
+                        <a href="$contact_r[tw]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
+                          <i class="bi bi-twitter me-1"></i>
+                        </a>
+
+                        data;
+                      }
+                    
+                    ?>
       </div>
     </div>
   </div>
