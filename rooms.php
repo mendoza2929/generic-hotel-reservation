@@ -15,7 +15,7 @@ require('admin/alert.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES - Rooms</title>
-    <link rel = "stylesheet" href="./index.css" type="text/css"/>
+    <link rel = "stylesheet" href="./style.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
     <!-- Link Swiper's CSS -->
@@ -30,33 +30,39 @@ require('admin/alert.php');
 </head>
 
 <body class="bg-light">
+<?php 
 
+$home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+$values = [1];
+$home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+
+?>
 
     <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php">KLC HOMES</a>
+        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><i class="bi bi-house-fill"></i><?php echo $home_r['site_title']?></a>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active me-3" aria-current="page" href="index.php">Home</a>
+              <a class="nav-link active me-3 fw-bold" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item"> 
-              <a class="nav-link me-3" href="rooms.php">Rooms</a>
+              <a class="nav-link me-3 fw-bold" href="rooms.php">Rooms</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-3" href="about.php">About Us</a>
+              <a class="nav-link me-3 fw-bold" href="about.php">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-3" href="contact.php">Contact Us</a>
+              <a class="nav-link me-3 fw-bold" href="contact.php">Contact Us</a>
             </li>
     
           </ul>
           <div class="d-flex">
           <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-              Login
+          <i class="bi bi-box-arrow-in-right"></i> Login
           </button>
           </div>
         </div>

@@ -25,3 +25,12 @@ body{
 }
 
 
+.setting-alert{
+    position:fixed;
+    bottom: 100rem;
+    left:72%;
+    width: 25%;
+}
+
+
+

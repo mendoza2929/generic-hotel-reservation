@@ -30,6 +30,9 @@
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="#"><i class="bi bi-house-door"></i> Rooms</a>
           </li>
+          <li class="nav-item navbar-admin">
+            <a class="nav-link " href="facilities.php"><i class="bi bi-house-heart-fill"></i> Facilities</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link  " href="#"><i class="bi bi-people"></i> Users</a>
           </li>
