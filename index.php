@@ -253,19 +253,41 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
       </div>
 
       <div class="col-lg-12 text-center mt-5">
-          <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
+          <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
       </div>
     </div>
   </div>
 
 
-<!---- OUR FACILITIES--->
+<!---- OUR FEATURES--->
 
-<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">OUR FACILITIES</h2>
+<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">OUR FEATURES</h2>
 
 <div class="container">
   <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
-    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+    <?php 
+    
+     $res = selectAll('facilities');
+     $path = FEATURES_IMG_PATH;
+
+     while($row = mysqli_fetch_assoc($res)){
+      echo<<<data
+      <div class="col-lg-4 col-md-6 mb-5 px-4">
+        <div class="bg-white rounded shadow p-4 border-top border-4 border-dark">
+            <div class="d-flex align-items-center mb-2">
+                <img src="$path$row[icon]" width="40px">
+                <h5 class="m-0 ms-3 fw-bold">$row[name]</h5>
+            </div>
+            <p>$row[description]</p>
+        </div>
+      </div>
+
+
+      data;
+     }
+    
+    ?>
+    <!--<div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
       <h5 class="mt-3 font-bold">🛵Free parking on premises
 Outdoor grilling area 
 Fully fenced area with gate that can be locked for safety purposes</h5>
@@ -290,7 +312,7 @@ Each room is provided with a main switch located inside the units</h5>
 Own water tank: Deep well – no water interruption</h5>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!---Testimonials-------------->

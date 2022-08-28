@@ -50,6 +50,7 @@ function alert($type, $message){
 
 
         alert;
+        
 }
 
 

@@ -99,6 +99,7 @@
         $frm_data = filteration($_POST);
         $values = [$frm_data['rem_features']];
 
+     
 
         $q = "DELETE FROM `facilities` WHERE `id`=?";
         $res = delete($q, $values,'i');
