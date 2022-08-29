@@ -269,7 +269,7 @@ require ("script.php");
                 alert('error','A Facilities is added to the room.')
             }
             else{
-                alert('error','Server Down');
+                alert('error','A Facilities is added to the room.');
             }
         }
 
