@@ -235,7 +235,7 @@ require ("script.php");
                 facilities_form.elements['facilities_name'].values='';
                 get_facilities();
             }else{
-                alert('error','Server Down!')
+                alert('error','Server Down!');
             }
 
         }

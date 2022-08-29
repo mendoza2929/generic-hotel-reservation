@@ -28,7 +28,7 @@
         <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-people"></i> Dashboard</a>
           </li>
           <li class="nav-item navbar-admin">
-            <a class="nav-link " href="#"><i class="bi bi-house-door"></i> Rooms</a>
+            <a class="nav-link " href="rooms.php"><i class="bi bi-house-door"></i> Rooms</a>
           </li>
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="facilities.php"><i class="bi bi-house-heart-fill"></i> Facilities</a>
