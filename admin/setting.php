@@ -394,7 +394,7 @@ require ("script.php");
         let index =  ['address','gmap','pn1','email','fb','insta','tw','iframe'];
         let contacts_input_id = ['address_input','gmap_input','pn1_input','email_input','fb_input','insta_input','tw_input','iframe_input']
         
-        let data_str="";
+        let data_str= "";
 
         for(i=0;i<index.length;i++){
           data_str += index[i] + "="+document.getElementById(contacts_input_id[i]).value + '&';

@@ -27,8 +27,6 @@
     }
 
 
-
-
     function redirect($url){
         echo "
             <script>window.location.href='$url';</script>
@@ -37,6 +35,8 @@
     }
 
 
+
+    
 
 function alert($type, $message){
     $bs_class = ($type == 'success') ? "alert-success" : "alert-danger";

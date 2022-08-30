@@ -60,7 +60,7 @@
             
             }else{
             
-                $status = "<button onclick='toggleStatus($row[id],1)' class='btn btn-success btn-sm shadow-none'>Not active</button>";
+                $status = "<button onclick='toggleStatus($row[id],1)' class='btn btn-danger btn-sm shadow-none'>Not active</button>";
             
             }
 
@@ -75,6 +75,10 @@
                     <td>$row[quantity]</td>
                     <td>$status</td>
                     <td>
+                        <button type='button' onclick='' class='btn btn-info btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#room-images'>
+                        <i class='i bi-images'></i>
+                        </button>
+
                         <button type='button' onclick='edit_details($row[id])' class='btn btn-warning btn-sm shadow-none' data-bs-toggle='modal' data-bs-target='#edit-room'>
                         <i class='i bi-pencil-square'></i>
                         </button>

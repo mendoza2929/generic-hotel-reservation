@@ -261,6 +261,43 @@ adminLogin();
             </div>
         </div>
 
+
+
+        <!-- Room Images Modal -->
+<div class="modal fade" id="room-images" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-card-image"></i> Room Image</h5>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></button>
+      </div>
+      <div class="modal-body">
+            <div class="border-bottom border-3 pb-3 mb-3">
+                <form id="add_image_form">
+                <label class="form-label fw-bold">Add Image</label>
+                <input type="file" name="image" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none mb-3" required>
+                <button  class="btn btn-success shadow-none">Add</button>
+                <input type="hidden" name="room_id">
+                 </form>
+            </div>
+            <div class="table-responsive-lg" style="height:350px; overflow-y:scroll;">
+                           <table class="table table-hover border text-center">
+                            <thead>
+                                <tr class="bg-secondary text-white sticky-top">
+                                <th scope="col" width="60%">Image</th>
+                                <th scope="col">Thumb</th>
+                                <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="room-image-data">
+                            </tbody>
+                            </table>
+                            </div>
+         </div>
+     </div>
+    </div>
+</div>
+
      
 
 
@@ -447,6 +484,40 @@ function toggleStatus(id,val){
 
 
     
+
+    let add_image_form = document.getElementById('add_image_form');
+
+    add_image_form.addEventListener('submit',function(e){
+        e.preventDefault();
+        add_image();
+    });
+
+    function add_image(){
+        let data = new FormData();
+        data.append('image',add_image_form.elements['image'].files[0]);
+        data.append('room_id',add_image_form.elements['room_id'].value);
+        data.append('add_image','');
+
+        let xhr = new XMLHttpRequest();
+            xhr.open("POST","rooms_ajax.php",true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+            xhr.onload = function (){
+                if(this.responseText== 'inv_img'){
+                    alert('error', 'Only JPG, WEBP or PNG images are supported');
+                }else if(this.responseText== 'inv_size'){
+                    alert('error', 'Image should be less than 2mb!';)
+                }else if(this.responseText== 'upd_failed'){
+                    alert('error','Image upload failed');
+                }else{
+                    alert('success','New Image Added');
+                    add_image_form.reset();
+                }
+            }
+        xhr.send(data);
+    }
+
+
 
 
     window.onload = function(){

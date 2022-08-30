@@ -108,12 +108,12 @@ function delete($sql,$values,$datatypes){
   }
   else{
    mysqli_stmt_close($stmt);
-   die("Query failed executed - insert");
+   die("Query failed executed - delete");
    }
  
   }
   else{
-   die("Query failed prepared - insert");
+   die("Query failed prepared - delete");
   }
 }
 
