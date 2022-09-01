@@ -22,7 +22,7 @@
         }
     }
 
-    function roomAlert(type,message){
+    function alertRoom(type,message,position='body'){
         let bs_class = (type== 'success') ? 'alert-success' : 'alert-danger';
         let element = document.createElement('div');
         element.innerHTML =`
@@ -35,14 +35,22 @@
         
         `;
 
-        document.body.append(element);
+        if(position=='body'){
+            document.body.append(element);
+            element.classList.add('room-alert');
+        }else{
+            document.getElementById(position).appendChild(element);
+        }
         setTimeout(remAlert,2000);
 
-       function remAlert(){
-            document.getElementsByClassName('alert')[0].remove();
-        }
     }
 
+    
+    function remAlert(){
+            document.getElementsByClassName('alert')[0].remove();
+        }
+
+  
 
 
  
