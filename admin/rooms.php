@@ -288,7 +288,7 @@ adminLogin();
                             <thead>
                                 <tr class="bg-secondary text-white sticky-top">
                                 <th scope="col" width="60%">Image</th>
-                                <th scope="col">Thumb</th>
+                                <th scope="col">Select Image</th>
                                 <th scope="col">Delete</th>
                                 </tr>
                             </thead>
@@ -577,10 +577,10 @@ function toggleStatus(id,val){
 
             xhr.onload = function(){
                 if(this.responseText== 1){
-                    alertRoom('success', 'Image Thumbnail Changed','image-alert');
+                    alertRoom('success', 'Image Select','image-alert');
                     room_images(room_id,document.querySelector("#room_images .modal-title").innerText);
                 }else{
-                    alertRoom('error', 'Thumbnail update Failed','image-alert');
+                    alertRoom('error', 'Image update Failed','image-alert');
                 }
                
       
