@@ -128,7 +128,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
 
       $facilities_data = "";
       while($fac_row = mysqli_fetch_assoc($fac_q)){
-        $facilities_data.=" <span class='badge rounded-pill bg-light text-dark text-wrap'>
+        $facilities_data.=" <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
         $fac_row[name]
         </span>";
       }

@@ -138,119 +138,89 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-6 my-3">
-      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
-        <img src="./img/room2.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5>Studio Type</h5>
-          <h6 class="mb-4">₱500 per night</h6>
-          <div class="features mb-4">
-            <h6 class="mb-1">Amenities</h6>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Monitored with 24/7
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            With parking area
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            NO CURFEW
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Flood free area
-            </span>
-          </div>
-          <div class="rating mb-4">
-            <span class="badge rounded-pill bg-light">
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-            </span>
-          </div>
-          <div class="d-flex justify-content-between">
-          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
-          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
-          </div>
-        </div>
-      </div>
-      </div>
 
-      <div class="col-lg-4 col-md-6 my-3">
-      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
-        <img src="./img/room2.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5>Studio Type</h5>
-          <h6 class="mb-4">₱500 per night</h6>
-          <div class="features mb-4">
-            <h6 class="mb-1">Amenities</h6>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Monitored with 24/7
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            With parking area
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            NO CURFEW
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Flood free area
-            </span>
-          </div>
-          <div class="rating mb-4">
-            <span class="badge rounded-pill bg-light">
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-            </span>
-          </div>
-          <div class="d-flex justify-content-between">
-          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
-          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
-          </div>
-        </div>
-      </div>
-      </div>
+    <?php 
+    
+    $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=? ORDER BY `id` DESC LIMIT 3",[1,0],'ii');
 
-      <div class="col-lg-4 col-md-6 my-3">
-      <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
-        <img src="./img/room3.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5>Studio Type</h5>
-          <h6 class="mb-4">₱500 per night</h6>
-          <div class="features mb-4">
-            <h6 class="mb-1">Amenities</h6>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Monitored with 24/7
+    while($room_data = mysqli_fetch_assoc($room_res)){
+
+      //get Facilities room
+
+      $fac_q = mysqli_query($con,"SELECT f.name FROM `features` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");
+
+      $facilities_data = "";
+      while($fac_row = mysqli_fetch_assoc($fac_q)){
+        $facilities_data.=" <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+        $fac_row[name]
+        </span>";
+      }
+     
+
+            //get Images room
+
+        $room_thumb = ROOM_IMG_PATH."IMG_14834.png";
+        $thumb_q = mysqli_query($con,"SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]' AND `thumb`='1'");
+
+        if(mysqli_num_rows($thumb_q) > 0){
+          $thumb_res = mysqli_fetch_assoc($thumb_q);
+          $room_thumb = ROOM_IMG_PATH.$thumb_res['image'];
+        }
+
+        echo<<<data
+
+        <div class="col-lg-4 col-md-6 my-3">
+        <div class="card border-0 shadow" style="max-width:350px; margin:auto;">
+          <img src="$room_thumb" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5>$room_data[name]</h5>
+            <h6 class="mb-4">₱$room_data[price] per night</h6>
+            <div class="features mb-4">
+              <h6 class="mb-1">Facilities</h6>
+              $facilities_data
+            </div>
+            <div class="guests">
+            <h6 class="mb-1">Guests</h6>
+            <span class="badge rounded-pill bg-light text-dark text-wrap">
+              $room_data[adult] Adults
             </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            With parking area
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            NO CURFEW
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap  ">
-            Flood free area
+            <span class="badge rounded-pill bg-light text-dark text-wrap">
+              $room_data[children] Children
             </span>
           </div>
-          <div class="rating mb-4">
-            <span class="badge rounded-pill bg-light">
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-            </span>
-          </div>
-          <div class="d-flex justify-content-between">
-          <a href="#" class="btn btn-success  text-white shadow-none">Book Now!</a>
-          <a href="#" class="btn btn-outline-dark shadow-none">More Details</a>
+            <div class="rating mb-4">
+              <span class="badge rounded-pill bg-light">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+            <a href="room_details.php?id=$room_data[id]" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
+        </div>
+
+
+        data;
+
+
+
+    }
+
+    
+    ?>
+
+
+
+
+
+
+
+
 
       <div class="col-lg-12 text-center mt-5">
           <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
@@ -273,7 +243,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
      while($row = mysqli_fetch_assoc($res)){
       echo<<<data
       <div class="col-lg-4 col-md-6 mb-5 px-4">
-        <div class="bg-white rounded shadow p-4 border-top border-4 border-dark">
+        <div class="bg-white rounded shadow p-4 border-top border-4">
             <div class="d-flex align-items-center mb-2">
                 <img src="$path$row[icon]" width="40px">
                 <h5 class="m-0 ms-3 fw-bold">$row[name]</h5>
@@ -389,66 +359,10 @@ Own water tank: Deep well – no water interruption</h5>
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
+      <div class="col-lg-12 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
       <iframe class="w-100 rounded" height="320px"src="<?php echo $contact_r['iframe']?>"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <div class="col-lg-4 col-md-4">
-          <div class="bg-white p-4 rounded mb-4">
-            <h5 class="text-center">Contact Us</h5>
-            <a href="Phone: 0956 408 0804" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-telephone"></i> <?php echo $contact_r['pn1']?></a>
-          </div>
-          <div class="bg-white p-4 rounded mb-4">
-            <h5 class="text-center">Follow Us</h5>
-            <?php
-            
-            if($contact_r['fb']!=''){
-              echo<<<data
-
-              <a href="$contact_r[fb]" target="_blank" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-facebook me-1"></i>Facebook</span>
-              </a>
-
-              data;
-            }
-            
-            ?>
-
-            <?php 
-            
-            if($contact_r['insta']!=''){
-              echo<<<data
-              
-              <a href="$contact_r[insta]" target="_blank" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram me-1"></i></i>Instagram</span>
-              </a>
-
-              data;
-            }
-            
-            ?>
-
-            <?php 
-            
-            if($contact_r['tw']!=''){
-              echo<<<data
-              
-              <a href="$contact_r[tw]" target="_blank" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6 p-2"><i class="bi bi-instagram me-1"></i></i>Instagram</span>
-              </a>
-
-              data;
-            }
-            
-            ?>
-
-
-            
-          
-
-
-          
-          </div>
-      </div>
+    
     </div>
   </div>
 
