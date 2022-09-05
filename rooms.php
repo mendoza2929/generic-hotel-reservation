@@ -149,7 +149,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         <div class="card mb-4 border-0 shadow">
           <div class="row g-0 p-3 align-items-center">
             <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-               <img src="$room_thumb"class="img-fluid rounded"style="width:90%" ">
+               <img src="$room_thumb"class="img-fluid rounded" style="width:90%" ">
             </div>
               <div class="col-md-5 px-lg-3 px-mb-3 px-0">
                 <h4 class="mb-5 mt-2 text-center fw-bold">$room_data[name]</h4>
