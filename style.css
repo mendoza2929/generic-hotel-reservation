@@ -49,9 +49,13 @@ input[type=number] {
     height: 1.7px;
 }
 
-.custom-alert{
+.room-alert{
   position:fixed;
-  bottom: 55rem;
+  bottom:-100px;
   left:68%;
   width: 30%;
+  z-index: 1111;
 }
+
+
+

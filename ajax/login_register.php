@@ -70,11 +70,11 @@ if(isset($_POST['register'])){
 
     $enc_pass = password_hash($data['pass'],PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `profile`, `password` , `token`) VALUES (?,?,?,?,?,?,?)";
+    $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `password` , `token`) VALUES (?,?,?,?,?,?)"; // insert `profile`
 
-    $value = [$data['name'],$data['email'],$data['address'],$data['phonenum'],$img,$enc_pass,$token];
+    $values = [$data['name'],$data['email'],$data['address'],$data['phonenum'],$enc_pass,$token]; //$img insert before phonenum
 
-    if(insert($query,$values,'sssssss')){
+    if(insert($query,$values,'ssssss')){
         echo 1;
     }else {
         echo 'ins_failed';

@@ -574,14 +574,18 @@ Own water tank: Deep well – no water interruption</h5>
     </script>
 
 
+
+
+
       <script>
 
-      function alertRoom(type,message,position='body'){ 
+
+        function alertRoom(type,message,position='body'){
         let bs_class = (type== 'success') ? 'alert-success' : 'alert-danger';
         let element = document.createElement('div');
         element.innerHTML =`
         
-        <div class="alert ${bs_class} alert-dismissible fade show text-center room-alert" role="alert">
+        <div class="alert ${bs_class} alert-dismissible fade show text-center " role="alert">
         <strong class="m-3">${message}</strong>
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -595,7 +599,7 @@ Own water tank: Deep well – no water interruption</h5>
         }else{
             document.getElementById(position).appendChild(element);
         }
-        setTimeout(remAlert,3000);
+        setTimeout(remAlert,1000);
 
     }
 
@@ -603,8 +607,6 @@ Own water tank: Deep well – no water interruption</h5>
     function remAlert(){
             document.getElementsByClassName('alert')[0].remove();
         }
-      
-
      
       let register_form = document.getElementById('register-form');
 
