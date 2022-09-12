@@ -27,9 +27,9 @@
     z-index: 11;
 }
 
-.setting-alert{
+ .setting-alert{
     position:fixed;
-    bottom: 50rem;
+    top:-75rem;
     left:72%;
     width: 25%;
 }
@@ -39,7 +39,9 @@
     top:80px;
     left:77%;
     width: 20%;
-}
+}  
+
+
 
 
 

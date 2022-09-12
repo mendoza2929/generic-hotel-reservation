@@ -21,7 +21,7 @@ require('admin/alert.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES - Contact Us</title>
-    <link rel = "stylesheet" href="./style.css"type="text/css"/>
+    <link rel = "stylesheet" href="main.css"type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
     <!-- Link Swiper's CSS -->
@@ -31,7 +31,7 @@ require('admin/alert.php');
     />
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<link rel="stylesheet" href="css/index.css"/>
+
 
 </head>
 
@@ -181,7 +181,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
             </div>
         </div>       
     </div>
-
+   
     <?php 
       
       if(isset($_POST['send'])){
@@ -192,6 +192,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
         $res = insert($q,$values,'sss');
         if($res==1){
+         
           alert('success','Your Inquiry has been successfully Send');
         }
         else{
@@ -299,12 +300,11 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
           </div>
         </div>
       </div>
-
-      <!-- Register Modal -->
-      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- Register Modal -->
+ <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form>
+            <form id="register-form">
             <div class="modal-header">
               <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -319,31 +319,32 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                 <div class="row">
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control shadow-none">
+                    <input type="text" class="form-control shadow-none" required name="name">
                   </div>
                   <div class="col-md-6 p-0 mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control shadow-none">
+                    <input type="email" class="form-control shadow-none" required name="email">
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Phone Number</label>
-                    <input type="number" class="form-control shadow-none">
+                    <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
                   <div class="col-md-6 p-0 mb-3">
                     <label class="form-label">Picture</label>
-                    <input type="file" class="form-control shadow-none">
+                    <input type="file" class="form-control shadow-none" accept=".jpg, .jpeg, .png, .webp" name="profile">
                   </div>
-                  <div class="col-md-12 p-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Address</label>
-                    <textarea class="form-control shadow-none" rows="3" style="resize: none;"></textarea>
+                  
+                    <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control shadow-none">
+                    <input type="password" class="form-control shadow-none" required name="pass">
                   </div>
                   <div class="col-md-6 p-0 mb-3">
                     <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control shadow-none">
+                    <input type="password" class="form-control shadow-none" required name="cpass">
                   </div>
                 </div>
                 <div class="text-center my-1">
@@ -356,12 +357,81 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
       </div>
 
 
+    
+
   
     
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+
+<script>
+
+
+let register_form = document.getElementById('register-form');
+
+register_form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+
+    let data = new FormData();
+
+    data.append('name',register_form.elements['name'].value);
+    data.append('email',register_form.elements['email'].value);
+    data.append('phonenum',register_form.elements['phonenum'].value);
+    data.append('address',register_form.elements['address'].value);
+    data.append('pass',register_form.elements['pass'].value);
+    data.append('cpass',register_form.elements['cpass'].value);
+    // data.append('profile',register_form.elements['profile'].files[0]);
+    data.append('register','');
+
+
+      var myModalEl = document.getElementById('registerModal')
+      var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+      modal.hide();
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST","./ajax/login_register.php",true);
+
+      xhr.onload = function(){
+
+        
+        if(this.responseText == 'password_mismatch'){
+          alert('Please enter a valid password');
+          
+        
+        }
+        else if(this.responseText == 'email_already'){
+          alertRoom('error',"Email already registered");
+        }
+        // else if(this.responseText == 'phone_already'){
+        //   alertRoom('error',"Phone Number is already registered");
+        // }
+        else if(this.responseText == 'inv_img'){
+          alertRoom('error',"Only JPG, JPEG , WEBP & PNG images are supported");
+        }
+        else if(this.responseText == 'upd_failed'){
+          alertRoom('error',"Image Upload Failed");
+        }
+        else if(this.responseText == 'mail_failed'){
+          alertRoom('error',"Cannot send confirmation email");
+        }
+        else if(this.responseText == 'ins_failed'){
+          alertRoom('error',"Registration Failed");
+        }
+        else{
+          alert("Registration Sucessfully. Confirmation link send to your email");
+          register_form.reset();
+        }
+      }
+      xhr.send(data);  
+    });
+
+
+</script>
+
+
 
 </body>
 </html>

@@ -307,7 +307,7 @@ adminLogin();
  <?php 
 require ("script.php");
 ?> 
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 
@@ -350,12 +350,20 @@ function add_rooms(){
             modal.hide();
 
             if(this.responseText==1){
-                alert('success','New Room Added');
+                Swal.fire(
+                'Good job!',
+                'Room Added',
+                'success'
+                )
                 room_form.reset();
                 get_rooms();
                 
             }else{
-                alert('error','Server Down!');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                })
             }
 
         }
@@ -449,7 +457,11 @@ function submit_edit_rooms(){
             modal.hide();
 
             if(this.responseText==1){
-                alert('success','Room Updated');
+                     Swal.fire(
+                    'Updated!',
+                    'Room Updated',
+                    'success'
+                    )
                 edit_form.reset();
                 get_rooms();
                 
@@ -591,6 +603,7 @@ function toggleStatus(id,val){
 
     
     function remove_room(room_id){
+        
         if(confirm("Are you sure you want to remove this room?")){
             let data = new FormData();
             data.append('room_id',room_id);
@@ -602,7 +615,11 @@ function toggleStatus(id,val){
 
             xhr.onload = function(){
                 if(this.responseText== 1){
-                    alert('success', 'Successfully remove room','image-alert');
+                     Swal.fire(
+                    'Deleted!',
+                    'Your Room has been deleted.',
+                    'success'
+                    )
                     get_rooms();
                 }else{
                     alert('error', 'Removed Room Failed','image-alert');

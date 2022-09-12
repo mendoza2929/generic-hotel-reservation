@@ -14,7 +14,7 @@
     define('USERS_FOLDER','users/');
 
     // sendgrid api key 
-    // define('SENDGRID_API_KEY',"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");
+    define('SENDGRID_API_KEY',"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");
 
     
 
@@ -58,6 +58,8 @@ function alert($type, $message){
         alert;
         
 }
+
+
 
 
 function uploadSVGImage($image,$folder){

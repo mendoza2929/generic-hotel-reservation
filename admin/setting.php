@@ -228,7 +228,7 @@ adminLogin();
   <div class="card border-0">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">There are no reservations.</h5>
+              <h5 class="card-title m-0">Full Reservations.</h5>
               <div class="form-check form-switch">
                 <form>
                 <div class="form-check form-switch">
@@ -254,6 +254,8 @@ adminLogin();
  <?php 
 require ("script.php");
 ?>   
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
   let general_data, contacts_data;
 
@@ -315,12 +317,21 @@ require ("script.php");
 
 
       if(this.responseText== 1){
-        
-      alert('success', 'Sucessfully Change')
+        Swal.fire(
+  'Good job!',
+  'Sucessfully Change',
+  'success'
+)
+
         get_general();
       }
       else{
-      alert('error', 'No Changes')
+        Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Nothing happen',
+ 
+})
       }
 
 
@@ -338,11 +349,19 @@ require ("script.php");
     xhr.onload = function(){
 
       if(this.responseText== 1 && general_data.shutdown==0){
-        
-      alert('success', 'Shutdown mode is activated');
+        Swal.fire(
+  'Activated!',
+  'Shutdown mode is activated',
+  'success'
+)
+
       }
       else{
-      alert('success', 'Shutdown mode is turned off');
+        Swal.fire(
+  'Deactivated',
+  'Shutdown mode is turned off',
+  'success'
+)
       }
       get_general();
     }
@@ -415,11 +434,21 @@ require ("script.php");
           modal.hide();
 
           if(this.responseText== 1){
-            alert('success', 'Successfully Change');
+                  Swal.fire(
+        'Changes',
+        'Successfully Change',
+        'success'
+      )
+        
             get_contacts();
             }
             else{
-            alert('error', 'No changes');
+              Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Nothing happen',
+ 
+})
             }
   
         }

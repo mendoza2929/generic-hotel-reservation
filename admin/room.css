@@ -1,7 +1,8 @@
-.setting-alert{
+
+ .setting-alert{
     position:fixed;
-    top: -41rem;
+    bottom:50rem;
     left:72%;
     width: 25%;
-    
 }
+

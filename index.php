@@ -15,7 +15,7 @@ require('admin/alert.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES</title>
-    <link rel = "stylesheet" href="./style.css" type="text/css"/>
+    <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
     <!-- Link Swiper's CSS -->
@@ -494,8 +494,9 @@ Own water tank: Deep well – no water interruption</h5>
                     <label class="form-label">Picture</label>
                     <input type="file" class="form-control shadow-none" accept=".jpg, .jpeg, .png, .webp" name="profile">
                   </div>
-                  <div class="col-md-12 p-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Address</label>
+                  
                     <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
@@ -515,8 +516,6 @@ Own water tank: Deep well – no water interruption</h5>
           </div>
         </div>
       </div>
-
-
 
 
 
@@ -574,39 +573,87 @@ Own water tank: Deep well – no water interruption</h5>
     </script>
 
 
-
-
+   
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script>
 
-
-        function alertRoom(type,message,position='body'){
-        let bs_class = (type== 'success') ? 'alert-success' : 'alert-danger';
-        let element = document.createElement('div');
-        element.innerHTML =`
         
-        <div class="alert ${bs_class} alert-dismissible fade show text-center " role="alert">
-        <strong class="m-3">${message}</strong>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    // function alertRoom(type,message,position='body'){
+    //     let bs_class = (type== 'success') ? 'alert-success' : 'alert-danger';
+    //     let element = document.createElement('div');
+    //     element.innerHTML =`
+        
+    //     <div class="alert ${bs_class} alert-dismissible fade show text-center " role="alert">
+    //     <strong class="m-3">${message}</strong>
+    //     <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+    //     </div>
 
         
-        `;
+    //     `;
 
-        if(position=='body'){
-            document.body.append(element);
-            element.classList.add('room-alert');
-        }else{
-            document.getElementById(position).appendChild(element);
-        }
-        setTimeout(remAlert,1000);
+    //     if(position=='body'){
+    //         document.body.append(element);
+    //         element.classList.add('room-alert');
+    //     }else{
+    //         document.getElementById(position).appendChild(element);
+    //     }
+    //     setTimeout(remAlert,2000);
 
-    }
+    // }
 
     
-    function remAlert(){
-            document.getElementsByClassName('alert')[0].remove();
-        }
+    // function remAlert(){
+    //         document.getElementsByClassName('alert')[0].remove();
+//         }
+
+
+//  let register_form = document.getElementById('register-form');
+
+// register_form.addEventListener('submit',function(e){
+//  e.preventDefault();
+//  add_User();
+
+// });
+
+
+//  function add_User(){
+
+//           let data = new FormData();
+       
+//           data.append('name',register_form.elements['name'].value);
+//           data.append('email',register_form.elements['email'].value);
+//           data.append('phonenum',register_form.elements['phonenum'].value);
+//           data.append('address',register_form.elements['address'].value);
+//           data.append('pass',register_form.elements['pass'].value);
+//           data.append('cpass',register_form.elements['cpass'].value);
+//           data.append('profile',register_form.elements['profile'].files[0]);
+//           data.append('register','');
+        
+//           let xhr = new XMLHttpRequest();
+//             xhr.open("POST","ajax/login_register.php",true);
+
+       
+
+
+//             xhr.onload = function(){
+//               var myModalEl = document.getElementById('registerModal')
+//               var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+//               modal.hide();
+
+//               if(this.responseText == 'password_mismatch'){
+//                 alert('Password mismatch');
+//               }
+//               else{
+//                 alert('register');
+//                 register_form.reset();
+//               }
+//             }
+
+//             xhr.send(data);
+
+//  }
+     
      
       let register_form = document.getElementById('register-form');
 
@@ -621,7 +668,7 @@ Own water tank: Deep well – no water interruption</h5>
           data.append('address',register_form.elements['address'].value);
           data.append('pass',register_form.elements['pass'].value);
           data.append('cpass',register_form.elements['cpass'].value);
-          data.append('profile',register_form.elements['profile'].files[0]);
+          // data.append('profile',register_form.elements['profile'].files[0]);
           data.append('register','');
 
 
@@ -630,33 +677,45 @@ Own water tank: Deep well – no water interruption</h5>
             modal.hide();
 
             let xhr = new XMLHttpRequest();
-            xhr.open("POST","ajax/login_register.php",true)
+            xhr.open("POST","ajax/login_register.php",true);
 
             xhr.onload = function(){
               if(this.responseText == 'password_mismatch'){
-                alertRoom('error',"Password mismatch");
-              }else if(this.responseText == 'email_already'){
-                alertRoom('error',"Email already registered");
-              }else if(this.responseText == 'phone_already'){
-                alertRoom('error',"Phone Number is already registered");
-              }else if(this.responseText == 'inv_img'){
-                alertRoom('error',"Only JPG, JPEG , WEBP & PNG images are supported");
-              }else if(this.responseText == 'upd_failed'){
-                alertRoom('error',"Image Upload Failed");
-              }else if(this.responseText == 'mail_failed'){
-                alertRoom('error',"Cannot send confirmation email");
-              }else if(this.responseText == 'ins_failed'){
-                alertRoom('error',"Registration Failed");
-              }else{
-                alertRoom('success',"Registration Sucessfully. Confirmation link send to your email");
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                
+              });
+              
+              }
+              // else if(this.responseText == 'email_already'){
+              //   alertRoom('error',"Email already registered");
+              // }
+              // else if(this.responseText == 'phone_already'){
+              //   alertRoom('error',"Phone Number is already registered");
+              // }
+              // else if(this.responseText == 'inv_img'){
+              //   alertRoom('error',"Only JPG, JPEG , WEBP & PNG images are supported");
+              // }
+              // else if(this.responseText == 'upd_failed'){
+              //   alertRoom('error',"Image Upload Failed");
+              // }
+              // else if(this.responseText == 'mail_failed'){
+              //   alertRoom('error',"Cannot send confirmation email");
+              // }
+              // else if(this.responseText == 'ins_failed'){
+              //   alertRoom('error',"Registration Failed");
+              // }
+              else{
+                alert('success',"Registration Sucessfully. Confirmation link send to your email");
                 register_form.reset();
               }
             }
             xhr.send(data);  
           });
 
-    
-
+     
 
       </script>
 

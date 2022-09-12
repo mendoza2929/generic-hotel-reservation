@@ -3,6 +3,7 @@
 *{
     font-family: 'Poppins',sans-serif;
     scroll-behavior: smooth;
+ 
     
 }
 
@@ -49,12 +50,14 @@ input[type=number] {
     height: 1.7px;
 }
 
-.room-alert{
+
+
+.custom-alert{
   position:fixed;
-  bottom:-100px;
+  bottom:60rem;
   left:68%;
   width: 30%;
-  z-index: 1111;
+  
 }
 
 

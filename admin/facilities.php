@@ -207,6 +207,7 @@ adminLogin();
  <?php 
 require ("script.php");
 ?> 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     let facilities_form = document.getElementById('facilities_form');
@@ -231,11 +232,21 @@ require ("script.php");
             modal.hide();
 
             if(this.responseText==1){
-                alert('success','New Facilities Added');
+                Swal.fire(
+                'Good job!',
+                'New Facilities Added',
+                'success'
+                )
+
                 facilities_form.elements['facilities_name'].values='';
                 get_facilities();
             }else{
-                alert('error','Server Down!');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                
+                })
             }
 
         }
@@ -262,14 +273,27 @@ require ("script.php");
  
         xhr.onload = function (){
             if(this.responseText==1){
-                alert('success','Facilities Removed Successfully');
+                Swal.fire(
+                'Good job!',
+                'Facilities Removed Successfully',
+                'success'
+                )
                 get_facilities();
             }
             else if(this.responseText== 'room_added'){
-                alert('error','A Facilities is added to the room.')
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A Facilities is added to the room.',
+                })
+                
             }
             else{
-                alert('error','A Facilities is added to the room.');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A Facilities is added to the room.',
+                })
             }
         }
 
@@ -302,16 +326,36 @@ require ("script.php");
             modal.hide();
 
             if(this.responseText== 'inv_img'){
-                alert('error','Only SVG images are supported');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Only SVG images are supported',
+                })
+                
             }
             else if(this.responseText== 'inv_size'){
-                alert('error','Image shoud be less than 1MB in size');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Image shoud be less than 1MB in size',
+                })
+               
             }
             else if(this.responseText == 'upd_failed'){
-                alert('error','Image Upload failed');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Image Upload failed',
+                })
+           
             }
             else{
-                alert('success','New Features Added');
+                                Swal.fire(
+                'Good job!',
+                'New Features Added',
+                'success'
+                )
+             
                 features_form.reset();
                 get_features();
                 
@@ -340,14 +384,28 @@ require ("script.php");
  
         xhr.onload = function (){
             if(this.responseText==1){
-                alert('success','Features Removed Successfully');
+                Swal.fire(
+                'Good job!',
+                'Features Removed Successfully',
+                'success'
+                )
+                
                 get_features();
             }
             else if(this.responseText== 'room_added'){
-                alert('error','A Feature is added to the room.')
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A Feature is added to the room.',
+                })
+               
             }
             else{
-                alert('error','Server Down');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A Feature is added to the room.',
+                })
             }
         }
 
