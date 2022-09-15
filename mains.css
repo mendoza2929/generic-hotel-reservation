@@ -54,11 +54,14 @@ input[type=number] {
 
 .custom-alert{
   position:fixed;
-  bottom:60rem;
+  bottom:55rem;
   left:68%;
   width: 30%;
   
 }
+
+
+
 
 
 

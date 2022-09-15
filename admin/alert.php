@@ -14,7 +14,7 @@
     define('USERS_FOLDER','users/');
 
     // sendgrid api key 
-    define('SENDGRID_API_KEY',"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");
+    define('SENDGRID_API_KEY',"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");
 
     
 
