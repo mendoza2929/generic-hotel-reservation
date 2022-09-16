@@ -135,7 +135,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
 
             //get Images room
 
-        $room_thumb = ROOM_IMG_PATH."IMG_14834.png";
+        $room_thumb = ROOM_IMG_PATH."360_F_349457338_PLFgcgC2C0NFoEajYw45kfVo6hkJDp7S.jpg";
         $thumb_q = mysqli_query($con,"SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]' AND `thumb`='1'");
 
         if(mysqli_num_rows($thumb_q) > 0){
@@ -405,37 +405,87 @@ register_form.addEventListener('submit',function(e){
  function add_User(){
 
           let data = new FormData();
-       
           data.append('name',register_form.elements['name'].value);
           data.append('email',register_form.elements['email'].value);
           data.append('phonenum',register_form.elements['phonenum'].value);
           data.append('address',register_form.elements['address'].value);
           data.append('pass',register_form.elements['pass'].value);
           data.append('cpass',register_form.elements['cpass'].value);
-          // data.append('profile',register_form.elements['profile'].files[0]);
           data.append('register','');
-        
-          let xhr = new XMLHttpRequest();
-            xhr.open("POST","ajax/login_register.php",true);
 
-       
+          // var myModalEl = document.getElementById('registerModal')
+          //     var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+          //     modal.hide();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","./ajax/login_register.php",true);
+
+        var myModalEl = document.getElementById('registerModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
 
 
-            xhr.onload = function(){
-              var myModalEl = document.getElementById('registerModal')
-              var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-              modal.hide();
-
-              if(this.responseText == 'password_mismatch'){
+       xhr.onload = function(){
+              if(this.responseText == "password_mismatch"){
                 alert('Password mismatch');
               }
+              else if(this.responseText == 'email_already'){
+                alert('Email Already Exist');
+              }
+              else if(this.responseText == 'phone_already'){
+                alert('Phone Number Already Use');
+              }
+              else if(this.responseText == 'mail_failed'){
+                alert('Cannot send confirmation email');
+              }
+              else if(this.responseText == 'ins_failed'){
+                alert('Registration Failed');
+              }
               else{
-                alert('register');
+                Swal.fire(
+                'Successfully Registered ',
+                'Confirmation link send to your email',
+                'success'
+              );
                 register_form.reset();
               }
             }
 
             xhr.send(data);
+
+
+        
+          // let xhr = new XMLHttpRequest();
+          //   xhr.open("POST","./admin/login_register.php",true);
+          
+
+          //   xhr.onload = function(){
+          //     if(this.responseText == "password_mismatch"){
+          //       alert('Password mismatch');
+          //     }
+          //     else if(this.responseText == 'email_already'){
+          //       alert('Email Already Exist');
+          //     }
+          //     else if(this.responseText == 'phone_already'){
+          //       alert('Phone Number Already Use');
+          //     }
+          //     else if(this.responseText == 'mail_failed'){
+          //       alert('Cannot send confirmation email');
+          //     }
+          //     else if(this.responseText == 'ins_failed'){
+          //       alert('Registration Failed');
+          //     }
+          //     else{
+          //       Swal.fire(
+          //       'Successfully Registered ',
+          //       'Confirmation link send to your email',
+          //       'success'
+          //     );
+          //       register_form.reset();
+          //     }
+          //   }
+
+          //   xhr.send(data);
 
  }
      
@@ -457,52 +507,110 @@ register_form.addEventListener('submit',function(e){
       //     data.append('register','');
 
 
+      //       // var myModalEl = document.getElementById('registerModal')
+      //       // var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+      //       // modal.hide();
+
+      //       // let xhr = new XMLHttpRequest();
+      //       // xhr.open("POST","admin/login_register.php",true);
+            
+
+      //   let xhr = new XMLHttpRequest();
+      //   xhr.open("POST","admin/login_register.php",true);
+
+      //   xhr.onload = function(){
+     
       //       var myModalEl = document.getElementById('registerModal')
       //       var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
       //       modal.hide();
 
-      //       let xhr = new XMLHttpRequest();
-      //       xhr.open("POST","ajax/login_register.php",true);
-
-      //       xhr.onload = function(){
-      //         if(this.responseText == 'password_mismatch'){
-      //           Swal.fire({
-      //           icon: 'error',
-      //           title: 'Oops...',
-      //           text: 'Something went wrong!',
+      //       if(this.responseText =='password_mismatch'){
+      //       alert('Please enter correct password');
                 
-      //         });
-              
-      //         }
-      //         // else if(this.responseText == 'email_already'){
-      //         //   alertRoom('error',"Email already registered");
-      //         // }
-      //         // else if(this.responseText == 'phone_already'){
-      //         //   alertRoom('error',"Phone Number is already registered");
-      //         // }
-      //         // else if(this.responseText == 'inv_img'){
-      //         //   alertRoom('error',"Only JPG, JPEG , WEBP & PNG images are supported");
-      //         // }
-      //         // else if(this.responseText == 'upd_failed'){
-      //         //   alertRoom('error',"Image Upload Failed");
-      //         // }
-      //         // else if(this.responseText == 'mail_failed'){
-      //         //   alertRoom('error',"Cannot send confirmation email");
-      //         // }
-      //         // else if(this.responseText == 'ins_failed'){
-      //         //   alertRoom('error',"Registration Failed");
-      //         // }
-      //         else{
-      //           alert('success',"Registration Sucessfully. Confirmation link send to your email");
-      //           register_form.reset();
-      //         }
+      //       }else{
+      //           alert('sucesss');
       //       }
-      //       xhr.send(data);  
-      //     });
+
+      //   }
+      //   xhr.send(data);
+
+      //       // xhr.onload = function(){
+            //   if(this.responseText == 'password_mismatch'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Password Incorrect',
+                
+            //   });
+              
+            //   }
+            //   else if(this.responseText == 'email_already'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Email already registered',
+                
+            //   });
+                
+            //   }
+            //   else if(this.responseText == 'phone_already'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Phone Number is already registered',
+                
+            //   });
+               
+            //   }
+            //   else if(this.responseText == 'inv_img'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Only JPG, JPEG , WEBP & PNG images are supported',
+                
+            //   });
+                
+            //   }
+            //   // else if(this.responseText == 'upd_failed'){
+                
+            //   //   alertRoom('error',"Image Upload Failed");
+            //   // }
+            //   else if(this.responseText == 'mail_failed'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Cannot send confirmation email',
+                
+            //   });
+               
+            //   }
+            //   else if(this.responseText == 'ins_failed'){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Registration Failed',
+                
+            //   });
+                
+            //   }
+            //   else{
+            //     Swal.fire({
+            //   position: 'top-end',
+            //   icon: 'success',
+            //   title: 'Registration Sucessfully Confirmation link send to your email',
+            //   showConfirmButton: false,
+            //   timer: 3000
+            // })            
+            //     register_form.reset();
+            //   }
+            // }
+            // xhr.send(data);  
+          // });
 
      
 
       </script>
+
 
 
 
