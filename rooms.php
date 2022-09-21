@@ -31,6 +31,8 @@ require('admin/alert.php');
 <body class="bg-light">
 <?php 
 
+session_start();
+
 $home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
 $values = [1];
 $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
@@ -60,9 +62,37 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
     
           </ul>
           <div class="d-flex">
-          <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-          <i class="bi bi-box-arrow-in-right"></i> Login
-          </button>
+          <?php 
+          
+          if(isset($_SESSION['login']) && $_SESSION['login']==true){
+            echo<<<data
+            
+            <div class="btn-group">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle shadow-none" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                
+                $_SESSION[uName]
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                  <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
+                  <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                </ul>
+              </div>
+
+
+            data;
+          }else{
+            echo<<<data
+
+            <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3"  data-bs-toggle="modal" data-bs-target="#loginModal">
+            Login
+            </button>
+
+            data;
+          }
+          
+          
+          ?>
           </div>
         </div>
       </div>
@@ -265,10 +295,8 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
   </div>
 
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
-
-
- <!-- Login Modal -->
- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <form>
@@ -285,20 +313,84 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control shadow-none">
                 </div>
-                <div class="d-flex align-items-center justify-content-between">
-                  <button type="submit" class="btn btn-success mb-2">Login</button>
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Don't Have an Account?</a>
+
+                <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Login</button></div>
+                <div class="mb-2 text-center text-decoration-none">
+                  <a href="#" class="text-decoration-none">Forgot Password?</a>
                 </div>
+                <div class="modal-footer align-items-center">
+                     <button type="button" class="btn btn-success" style="margin-right:120px;" data-bs-toggle="modal" data-bs-target="#registerModal">Create New Account</button>
+                 </div>
+             
               </div>
             </form>
           </div>
         </div>
       </div>
+
+
+  
+
+        <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form id="register-form" method="POST">
+                    <div class="modal-content">
+                    <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+              <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
+                Note: Your Details must match with your ID that will be required  during check-in.
+              </span>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control shadow-none" required name="name">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control shadow-none" required name="email">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="number" class="form-control shadow-none" required name="phonenum">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Address</label>
+                    <input type="text" class="form-control shadow-none" required name="address">
+                   <!-- <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>-->
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Password<span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
+                    (8 characters minimum)
+              </span></label>
+                    <input type="password" class="form-control shadow-none" required name="pass" minlength="8">
+                  </div>
+                  <div class="col-md-6 p-0 mb-3">
+                    <label class="form-label">Confirm Password  <span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
+                    (8 characters minimum)
+              </span></label>
+                    <input type="password" class="form-control shadow-none" required name="cpass" minlength="8">
+                  </div>
+                </div>
+                <div class="text-center my-1">
+                  <button type="submit" class="btn btn-success shadow-none w-100">Register</button>
+                </div>
+              </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
  
 
 
       <!-- Register Modal -->
-      -<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="register-form">
@@ -326,10 +418,6 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <label class="form-label">Phone Number</label>
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
-                  <!--<div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Picture</label>
-                    <input type="file" class="form-control shadow-none" accept=".jpg, .jpeg, .png, .webp" name="profile">
-                  </div>-->
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Address</label>
                     <input type="text" class="form-control shadow-none" required name="address">
@@ -348,10 +436,14 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                   <button type="submit" class="btn btn-success shadow-none">Register</button>
                 </div>
               </div>
+              
             </form>
           </div>
         </div>
       </div>
+
+
+
 
     
 <!-- JavaScript Bundle with Popper -->

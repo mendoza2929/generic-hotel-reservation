@@ -9,7 +9,7 @@
 <body>
 <div class="container-fluid admin-dash text-light p-3 d-flex align-items-center justify-content-between sticky-top">
         <h3 class="mb-0"><i class="bi bi-house"></i> KLC ADMIN</h3>
-        <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3">Logout <i class="bi bi-box-arrow-right"></i> </a>
     </div>
 
     <div class="col-lg-2  border-top border-3 dashboard admin-navbar" id="dashboard">

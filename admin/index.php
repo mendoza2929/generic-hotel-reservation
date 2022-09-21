@@ -38,8 +38,8 @@
 <body class="bg-light">
     
   <div class="login-form text-center rounded bg-white shadow overflow-hidden">
-      <form method="POST" >
-          <h4 class="bg-secondary text-white py-3 ">ADMIN KLC</h4>
+      <form method="POST" autocomplete="off">
+          <h4 class="bg-secondary text-white py-3 ">ADMIN KLC HOMES <i class="bi bi-house-fill"></i></h4>
           <div class="p-4">
               <div class="mb-3">
                   
@@ -50,8 +50,8 @@
                   <input name="admin_pass" required   type="password" class="form-control shadow-none text-center" placeholder="Password" >
               </div>
             
-              <button name="login" type="submit" class="btn btn-success shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-        Login <i class="bi bi-box-arrow-in-right"></i>
+              <button name="login" type="submit" class="btn btn-success shadow-none me-lg-2 me-3 w-100" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Login   
         </button>
           </div>
       </form>

@@ -15,6 +15,9 @@
 
     // sendgrid api key 
     define('SENDGRID_API_KEY',"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");
+    define('SENDGRID_EMAIL',"bg201802024@wmsu.edu.ph");
+    define('SENDGRID_NAME',"MERV");
+
 
     
 
