@@ -61,6 +61,14 @@ input[type=number] {
 }
 
 
+.icon-login{
+  position: absolute;
+  top: 146px;
+  right: 5%;
+  cursor: pointer;
+  color: rgb(110, 99, 99);
+}
+
 
 
 

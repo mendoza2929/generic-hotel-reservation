@@ -239,7 +239,7 @@ adminLogin();
           </button>
             </div>
             <p class="card-text" id="site_about">
-            When there are no available rooms, shutdown mode is activated, and no clients are permitted to make reservations.
+            When there are no available rooms, shutdown mode is activated, and no tenants are permitted to make reservations.
             </p>
           </div>
 

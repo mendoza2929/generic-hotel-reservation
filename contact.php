@@ -21,7 +21,7 @@ require('admin/alert.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES - Contact Us</title>
-    <link rel = "stylesheet" href="mains.css"type="text/css"/>
+    <link rel = "stylesheet" href="main.css"type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       
     <!-- Link Swiper's CSS -->
@@ -38,10 +38,19 @@ require('admin/alert.php');
 <body class="bg-light">
 <?php 
 session_start();
+date_default_timezone_set("Asia/Manila");
 
 $home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
 $values = [1];
 $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+
+if($home_r['shutdown']==1){
+  echo<<<alertbar
+  <div class='bg-secondary text-center p-2 fw-bold text-white'>
+  <i class='bi bi-exclamation-triangle'></i> Reservations are temporarily closed because there are no available rooms!
+  </div>
+  alertbar;
+}
 
 ?>
 
@@ -302,10 +311,10 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
 <!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+<div class="modal fade" id="loginModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
           <div class="modal-content">
-            <form id="login-form">
+            <form id="login-form" method="POST">
             <div class="modal-header">
               <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-check-fill fs-3 me-2"></i>User login</h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -313,27 +322,78 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
             <div class="modal-body">
               <div class="mb-3">
                 <label class="form-label">Email/PhoneNumber</label>
-                <input type="text" name="email_mob" required class="form-control shadow-none">
+                <input type="text" class="form-control shadow-none" required name="email_mob" >
                 </div>
                 <div class="mb-4">
                 <label class="form-label">Password</label>
-                <input type="password" name="pass" class="form-control shadow-none">
+                <input type="password" class="form-control shadow-none" required name="loginpass" >
                 </div>
 
                 <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Login</button></div>
                 <div class="mb-2 text-center text-decoration-none">
-                  <a href="javascript:void(0)" class="text-decoration-none">Forgot Password?</a>
+                  <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotModal" >Forgot Password?</a>
                 </div>
-                <!--<div class="modal-footer">
-                  
+                <div class="modal-footer">
                     <button type="button" class="btn btn-success " style="margin-right:120px;"  data-bs-toggle="modal" data-bs-target="#registerModal">Create New Account</button>
-                 </div>-->
+                 </div>
              
               </div>
             </form>
           </div>
         </div>
       </div>
+
+
+          
+      <!---Forgot modal -->
+ <div class="modal fade" id="forgotModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content">
+            <form id="forgot-form">
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-shield-exclamation"></i> Forgot Password</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-4">
+              <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base">
+                Note: A link will be send to your email to reset your password!
+              </span>
+                <input type="email" class="form-control shadow-none" required name="email" placeholder="Email....">
+                </div>
+                <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Get Reset link</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+            <!---recovery password modal -->
+ <div class="modal fade" id="recoveryModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content">
+            <form id="recovery-form">
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-shield-plus"></i>Set New Password</h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-4">
+                <input type="password" class="form-control shadow-none" required name="pass" placeholder="New Password..">
+                <input type="hidden" name="email">
+                <input type="hidden" name="token">
+                </div>
+                <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Submit</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+            
+
+
+
+  
 
         <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -390,65 +450,42 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
             </div>
         </div>
 
+
+    
+
+    
  
+<?php
+
+if(isset($_GET['account_recovery'])){
+  $data = filteration($_GET);
+
+  $t_date = date("Y-m-d");
+
+  $query = select("SELECT * FROM `user_cred` WHERE `email`=? AND `token`=? AND `t_expire`=? LIMIT 1",[$data['email'],$data['token'],$t_date],'sss');
 
 
-      <!-- Register Modal -->
-      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form id="register-form">
-            <div class="modal-header">
-              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
-              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="text-center">
-              <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
-                Note: Your Details must match with your ID that will be required  during check-in.
-              </span>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control shadow-none" required name="name">
-                  </div>
-                  <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control shadow-none" required name="email">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Phone Number</label>
-                    <input type="number" class="form-control shadow-none" required name="phonenum">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control shadow-none" required name="address">
-                   <!-- <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>-->
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control shadow-none" required name="pass">
-                  </div>
-                  <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control shadow-none" required name="cpass">
-                  </div>
-                </div>
-                <div class="text-center my-1">
-                  <button type="submit" class="btn btn-success shadow-none">Register</button>
-                </div>
-              </div>
-              
-            </form>
-          </div>
-        </div>
-      </div>
+  if(mysqli_num_rows($query)==1){
+    echo <<<showModal
+      <script>
+    var myModal = document.getElementById('recoveryModal')
 
+    myModal.querySelector("input[name='email']").value = '$data[email]';
+    myModal.querySelector("input[name='token']").value = '$data[token]';
 
+    var modal = bootstrap.Modal.getOrCreateInstance(myModal) // Returns a Bootstrap modal instanceof
+    modal.show();
+    </script>
+    showModal;
+  }else{
+    echo '<script>alert("Invalid Link")</script>';
+  }
 
+}
 
+?>
+
+ 
   
     
 <!-- JavaScript Bundle with Popper -->
@@ -461,37 +498,9 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
       <script>
 
-        
-    // function alertRoom(type,message,position='body'){
-    //     let bs_class = (type== 'success') ? 'alert-success' : 'alert-danger';
-    //     let element = document.createElement('div');
-    //     element.innerHTML =`
-        
-    //     <div class="alert ${bs_class} alert-dismissible fade show text-center " role="alert">
-    //     <strong class="m-3">${message}</strong>
-    //     <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
-    //     </div>
-
-        
-    //     `;
-
-    //     if(position=='body'){
-    //         document.body.append(element);
-    //         element.classList.add('room-alert');
-    //     }else{
-    //         document.getElementById(position).appendChild(element);
-    //     }
-    //     setTimeout(remAlert,2000);
-
-    // }
-
-    
-    // function remAlert(){
-    //         document.getElementsByClassName('alert')[0].remove();
-//         }
-
 
  let register_form = document.getElementById('register-form');
+
 
 register_form.addEventListener('submit',function(e){
  e.preventDefault();
@@ -524,8 +533,8 @@ register_form.addEventListener('submit',function(e){
 
 
        xhr.onload = function(){
-              if(this.responseText == "password_mismatch"){
-                alert('Password mismatch');
+              if(this.responseText == 'password_mismatch'){
+                alert('Password Mismatch');
               }
               else if(this.responseText == 'email_already'){
                 alert('Email Already Exist');
@@ -551,200 +560,209 @@ register_form.addEventListener('submit',function(e){
 
             xhr.send(data);
 
-
-        
-          // let xhr = new XMLHttpRequest();
-          //   xhr.open("POST","./admin/login_register.php",true);
-          
-
-          //   xhr.onload = function(){
-          //     if(this.responseText == "password_mismatch"){
-          //       alert('Password mismatch');
-          //     }
-          //     else if(this.responseText == 'email_already'){
-          //       alert('Email Already Exist');
-          //     }
-          //     else if(this.responseText == 'phone_already'){
-          //       alert('Phone Number Already Use');
-          //     }
-          //     else if(this.responseText == 'mail_failed'){
-          //       alert('Cannot send confirmation email');
-          //     }
-          //     else if(this.responseText == 'ins_failed'){
-          //       alert('Registration Failed');
-          //     }
-          //     else{
-          //       Swal.fire(
-          //       'Successfully Registered ',
-          //       'Confirmation link send to your email',
-          //       'success'
-          //     );
-          //       register_form.reset();
-          //     }
-          //   }
-
-          //   xhr.send(data);
-
  }
-     
+
  
  let login_form = document.getElementById('login-form');
-
 login_form.addEventListener('submit',function(e){
  e.preventDefault();
- loginUser();
+ login_User();
 
 });
 
-function loginUser(){
+ function login_User(){
+          let data = new FormData();
+          data.append('email_mob',login_form.elements['email_mob'].value);
+          data.append('loginpass',login_form.elements['loginpass'].value);
+          data.append('login','');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","./ajax/login_register.php",true);
+
+        var myModalEl = document.getElementById('loginModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
+       xhr.onload = function(){
+              if(this.responseText == 'inv_email_mob'){
+                alert('Invalid Email or Phone Number');
+              }
+              else if(this.responseText == 'not_verified'){
+                alert('Email is not verified');
+              }
+              else if(this.responseText == 'inactive'){
+                alert('Account Suspended Please contact the Admin');
+              }
+              else if(this.responseText == 'invalid_pass'){
+                alert('Incorrect Password');
+              }
+              else{
+                window.location = window.location.pathname;
+               
+              }
+            }
+            xhr.send(data);
+ }
+
+
+
+
+ let forgot_form = document.getElementById('forgot-form');
+forgot_form.addEventListener('submit',function(e){
+ e.preventDefault();
+ forgot_pass();
+
+});
+
+function forgot_pass(){
   let data = new FormData();
-  data.append('email_mob',login_form.elements['email_mob'].value);
-  data.append('pass',login_form.elements['pass'].value);
-  data.append('login','');
+  data.append('email',forgot_form.elements['email'].value);
+  data.append('forgot','');
 
-  var myModalEl = document.getElementById('loginModal')
-  var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-  modal.hide();
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","./ajax/login_register.php",true);
 
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST","ajax/login_register.php",true);
+            var myModalEl = document.getElementById('forgotModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
 
-  xhr.onload =function(){
-    if(this.responseText == 'inv_email_mob'){
-      alert('Invalid Email or Phone Number');
-    }else if(this.responseText == 'not_verified'){
-      alert('Email is not verified');
-    }else if(this.responseText == 'inactive'){
-      alert('Account Suspended Please contact the Admin');
-    }else if(this.responseText == 'invalid_pass'){
-      alert('Incorrect Password');
-    }else{
-      window.location = window.location.pathname;
-    }
-  }
-  xhr.send(data);
+         
+            xhr.onload = function(){
+              if(this.responseText == 'inv_email'){
+                alert('Password Mismatch');
+              }
+              else if(this.responseText == 'not_verified'){
+                alert('Email is not verified Please contact the administrator');
+              }
+              else if(this.responseText == 'inactive'){
+                alert('Account is inactive Please contact the administrator');
+              }
+              else if(this.responseText == 'email_failed'){
+                alert('Cannot send email');
+              }else if(this.responseText == 'upd_failed'){
+                alert('Account recovery failed')
+              }
+              else{
+                Swal.fire(
+                'Successfully Send Link ',
+                'Reset Password link Send To Your Email',
+                'success'
+              );
+              forgot_form.reset();
+               
+              }
+            }
+            xhr.send(data);
+  
 }
 
-      // let register_form = document.getElementById('register-form');
 
-      // register_form.addEventListener('submit',(e)=>{
-      //     e.preventDefault();
+let recovery_form = document.getElementById('recovery-form');
 
-      //     let data = new FormData();
+recovery_form.addEventListener('submit',function(e){
+ e.preventDefault();
+ recovery_pass();
 
-      //     data.append('name',register_form.elements['name'].value);
-      //     data.append('email',register_form.elements['email'].value);
-      //     data.append('phonenum',register_form.elements['phonenum'].value);
-      //     data.append('address',register_form.elements['address'].value);
-      //     data.append('pass',register_form.elements['pass'].value);
-      //     data.append('cpass',register_form.elements['cpass'].value);
-      //     // data.append('profile',register_form.elements['profile'].files[0]);
-      //     data.append('register','');
+});
 
+function recovery_pass(){
+   let data = new FormData();
 
-      //       // var myModalEl = document.getElementById('registerModal')
-      //       // var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-      //       // modal.hide();
+   data.append('email',recovery_form.elements['email'].value);
+   data.append('token',recovery_form.elements['token'].value);
+   data.append('pass',recovery_form.elements['pass'].value);
+   data.append('recovery_pass','');
 
-      //       // let xhr = new XMLHttpRequest();
-      //       // xhr.open("POST","admin/login_register.php",true);
-            
+   let xhr = new XMLHttpRequest();
+  xhr.open("POST","./ajax/login_register.php",true);
 
-      //   let xhr = new XMLHttpRequest();
-      //   xhr.open("POST","admin/login_register.php",true);
+            var myModalEl = document.getElementById('recoveryModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
 
-      //   xhr.onload = function(){
-     
-      //       var myModalEl = document.getElementById('registerModal')
-      //       var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-      //       modal.hide();
-
-      //       if(this.responseText =='password_mismatch'){
-      //       alert('Please enter correct password');
-                
-      //       }else{
-      //           alert('sucesss');
-      //       }
-
-      //   }
-      //   xhr.send(data);
-
-      //       // xhr.onload = function(){
-            //   if(this.responseText == 'password_mismatch'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Password Incorrect',
-                
-            //   });
-              
-            //   }
-            //   else if(this.responseText == 'email_already'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Email already registered',
-                
-            //   });
-                
-            //   }
-            //   else if(this.responseText == 'phone_already'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Phone Number is already registered',
-                
-            //   });
+            xhr.onload = function(){
+              if(this.responseText == 'failed'){
+                alert('Recovery Email Failed');
+              }
+              else{
+                Swal.fire(
+                'Successfully Reset Password ',
+                'Your Password Has Been Reset',
+                'success'
+              );
+             recovery_form.reset();
                
-            //   }
-            //   else if(this.responseText == 'inv_img'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Only JPG, JPEG , WEBP & PNG images are supported',
-                
-            //   });
-                
-            //   }
-            //   // else if(this.responseText == 'upd_failed'){
-                
-            //   //   alertRoom('error',"Image Upload Failed");
-            //   // }
-            //   else if(this.responseText == 'mail_failed'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Cannot send confirmation email',
-                
-            //   });
-               
-            //   }
-            //   else if(this.responseText == 'ins_failed'){
-            //     Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Registration Failed',
-                
-            //   });
-                
-            //   }
-            //   else{
-            //     Swal.fire({
-            //   position: 'top-end',
-            //   icon: 'success',
-            //   title: 'Registration Sucessfully Confirmation link send to your email',
-            //   showConfirmButton: false,
-            //   timer: 3000
-            // })            
-            //     register_form.reset();
-            //   }
-            // }
-            // xhr.send(data);  
-          // });
+              }
+            }
+            xhr.send(data);
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let login_form = document.getElementById('login-form');
+
+//  login_form.addEventListener('submit', (e)=>{
+//   e.preventDefault();
+//   let data = new FormData();
+//   data.append('email_mob',login_form.elements['email_mob'].value);
+//   data.append('pass',login_form.elements['pass'].value);
+//   data.append('login','');
+
+//   var myModalEl = document.getElementById('loginModal')
+//   var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+//   modal.hide();
+
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("POST",".ajax/login_register.php",true);
+
+  
+//   xhr.onload = function(){
+//               if(this.responseText == 'inv_email_mob'){
+//                 alert('Invalid Email or Phone Number');
+//               }
+//               else if(this.responseText == 'not_verified'){
+//                 alert('Email is not verified');
+//               }
+//               else if(this.responseText == 'inactive'){
+//                 alert('Account Suspended Please contact the Admin');
+//               }
+//               else if(this.responseText == 'invalid_pass'){
+//                 alert('Incorrect Password');
+//               }
+//               else{
+//                 window.location = window.location.pathname;
+//                login_form.reset();
+//               }
+//             }
+//        xhr.send(data);
+
+// });
+
+
+
+
+
+
+
+    
 
      
 
       </script>
+
+
+
 
 
 
