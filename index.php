@@ -88,10 +88,10 @@ if($home_r['shutdown']==1){
                   
                   $_SESSION[uName]
                   </button>
-                  <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                  <ul class="dropdown-menu dropdown-menu-lg-end ">
+                    <li><a class="dropdown-item btn btn-danger " href="profile.php">Profile</a></li>
                     <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
                   </ul>
                 </div>
 
@@ -881,7 +881,13 @@ login_form.addEventListener('submit',function(e){
                 alert('Incorrect Password');
               }
               else{
-                window.location = window.location.pathname;
+                let fileurl = window.location.href.split('/').pop().split('?').shift();
+                if(fileurl == 'room_details.php'){
+                  window.location = window.location.href;
+                }else{
+                  window.location = window.location.pathname;
+                }
+               
                
               }
             }

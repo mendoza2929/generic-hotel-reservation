@@ -184,7 +184,11 @@ if($home_r['shutdown']==1){
         $book_btn = "";
              
         if(!$home_r['shutdown']){
-          $book_btn = "  <a href='#' class='btn btn-success w-100 text-white shadow-none mb-2'>Reserve Now</a>";
+          $login=0;
+          if(isset($_SESSION['login']) && $_SESSION['login']==true){
+            $login=1;
+          }
+          $book_btn = "  <button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-success w-100 text-white shadow-none mb-2'>Reserve Now</button>";
         } 
 
           
@@ -213,7 +217,7 @@ if($home_r['shutdown']==1){
                 </div>
               </div>
               <div class="col-md-2 text-center mt-lg-0 mt-md-0 mt-4">
-              <h6 class="mb-4">₱$room_data[price] per night</h6>
+              <h6 class="mb-4">₱$room_data[price] per month</h6>
               $book_btn
               <a href="room_details.php?id=$room_data[id]" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
               </div>
@@ -750,6 +754,22 @@ function recovery_pass(){
 // });
 
 
+
+function checkLoginToBook(status,room_id){
+  if(status){
+    window.location.href='confirm_booking.php?id='+room_id;
+  }
+  else{
+    Swal.fire({
+  position: 'top-end',
+  icon: 'warning',
+  title: 'Please Login First to Reserve Room',
+  showConfirmButton: false,
+  timer: 1500,
+  
+});
+  }
+}
 
 
 
