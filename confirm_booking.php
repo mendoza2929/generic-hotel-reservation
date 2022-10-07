@@ -5,6 +5,10 @@
 require('admin/db.php');
 require('admin/alert.php');
 
+include_once 'config.php';
+
+include_once 'dbconnection.php';
+
 ?>
 
 
@@ -25,7 +29,7 @@ require('admin/alert.php');
     />
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
+<script src="https://www.paypal.com/sdk/js?client-id=ATCuaMwZvvLQw_uUsfFXHMjrMA0S99bUGeEOy2l8LxLDTrTErChioDQ2KPsINWzRiUpKCD0pWxgsyLtY"></script>
 
 </head>
 
@@ -199,12 +203,20 @@ if($home_r['shutdown']==1){
 
   
     
-         
+        
         <div class="col-lg-5 col-md-12 px-4">
+         
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
-            <form action="#" id="booking_form">
+           
+            <form action="success.php" id="booking_form" method="POST">
               <h6 class="mb-3 text-center fw-bold">Reservation Details</h6>
+
+              <!---identify your business so that you can collectt the payment-->
+              <input type="hidden" name="business" value="<?php echo PAYPAL_ID;?>">
+
+              <input type="hidden" name="cmd" value="_xclick">
+
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label class="form-label mb-1">Name</label>
@@ -231,15 +243,24 @@ if($home_r['shutdown']==1){
                       <span class="visually-hidden">Loading...</span>
                     </div>
                   <h6 class="text-center fw-bold text-danger" id="pay_info">Please provide check-in & check-out date first!</h6>
-                  <button name="pay_now" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Pay Now</button>
+
+                
+
+                  <!--- Specify URLS-->
+                  <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL?>"> 
+                  <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL?>"> 
+
+                
+                  <button name="pay_now" type="submit" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Pay Now</button>
                   </div>
                 </div>
             </form>
             </div>
           </div>
         </div>
-
-
+        
+   
+            
 
 
    
@@ -505,6 +526,12 @@ if(isset($_GET['account_recovery'])){
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        paypal.Buttons().render('#paypal-button-container');
+    </script>
+
+
+
 
       <script>
 
