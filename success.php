@@ -14,137 +14,133 @@ date_default_timezone_set("Asia/Manila");
 
 
 session_start();
+unset($_SESSION['room']);
 
-if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
-    redirect('index.php');
+function regenerate_session($uid){
+    $user_q=select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1",[$uid],'i');
+    $user_fetch = mysqli_fetch_assoc($user_q);
 
+    $_SESSION['login']=true;
+    $_SESSION['uId']= $user_fetch['id'];
+    $_SESSION['uName'] =$user_fetch['name'];
+     $_SESSION['uPhone']= $user_fetch['phonenum'];
+} 
 
-}   
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
 
-if(isset($_POST['pay_now'])){
-    // $checkSum = "";
+// $isValidCheckSum = "FALSE";
 
-    $ORDER_ID = 'ORD_'.$_SESSION['uId'].random_int(11111,9999999);
-    $CUST_ID = $_SESSION['uId'];
-    $TXN_AMOUNT = $_SESSION['room']['payment'];
-  
+// $paytmCheckSum="";
+// $paramList= $_POST;
 
+// $paytmCheckSum = isset($_POST["return"]) ? $_POST["return"] : "";
 
-    // $paramList = array();
-    // $paramList["ORDER_ID"] = $ORDER_ID;
-    // $paramList["CUST_ID"] = $ORDER_ID;
-    // $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
-
-    // $checkSum = getChecksumFromArray($paramList,PAYPAL_ID);
-
-    $frm_data =filteration($_POST);
-
-    $query1 = "INSERT INTO `booking_order`(`user_id`, `room_id`, `check_in`, `check_out`, `order_id`) VALUES (?,?,?,?,?)";
-
-    insert($query1,[$CUST_ID,$_SESSION['room']['id'],$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
-
-    $booking_id = mysqli_insert_id($con);
-
-    $query2 = "INSERT INTO `booking_details`(`booking_id`, `room_name`, `price`, `total_pay`, `user_name`, `phonenum`, `address`) 
-    VALUES (?,?,?,?,?,?,?)";
-
-    insert($query2,[$booking_id,$_SESSION['room']['name'],$_SESSION['room']['price'],$TXN_AMOUNT,$frm_data['name'],$frm_data['phonenum'],$frm_data['address']],'issssss');
+// $isValidCheckSum = PAYPAL_RETURN_URL;
 
 
 
- }
 
 
- if(!empty($_GET['item_book']) && !empty($_GET['tx']) && !empty($_GET['amt']) && !empty($_GET['cc']) && !empty($_GET['st'])){
+// if($isValidCheckSum == "TRUE"){
 
-    $item_book = $_GET['item_book'];
-    $txn_id  = $_GET['tx'];
-    $payment_gross = $_GET['amt'];
-    $currency_code = $_GET['cc'];
-    $payment_status = $_GET['st'];
     
-    $productResult = $con->query("SELECT * FROM `booking_details` WHERE sr_no = ".$item_book);
-    $productRow = $productResult->fetch_assoc();
+// $slct_query = "SELECT `booking_id` , `user_id` FROM `booking_order` WHERE `order_id`='$_POST[ORDERID]'";
 
+// $slct_res = mysqli_query($con,$slct_query);
 
-    $prevPaymentResult = $con->query("SELECT * FROM `booking_order` WHERE  trans_id = '".$txn_id."'");
+// if(mysqli_num_rows($slct_res)==0){
+//     redirect('index.php');
+
+// }
+
+// $slct_fetch = mysqli_fetch_assoc($slct_res);
+
+// if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
+//     regenerate_session($slct_fetch['user_id']);
+// }
     
-
-    if($prevPaymentResult->num_rows > 0){
-        $paymentRow= $prevPaymentResult->fetch_assoc();
-        $payment_id = $paymentRow['booking_id'];
-        $payment_gross = $paymentRow['trans_amt'];
-        $payment_status= $paymentRow['trans_status'];
-    }
-    
- }
+// if ($_POST["STATUS"] == "TXN_SUCCESS"){
+//     $upd_query = "UPDATE `booking_order` SET  `booking_status`='booked',`trans_id`='$_POST[TXNID]',`trans_amt`='$_POST[TNXAMOUNT]',`trans_status`='$_POST[STATUS]',`trans_res_msg`='$_POST[RESPMSG]', WHERE `booking_id`='$slct_fetch[booking_id]'";
 
 
+//     mysqli_query($con,$upd_query);
+
+
+// }else{
+//     $upd_query = "UPDATE `booking_order` SET  `booking_status`='payment failed',`trans_id`='$_POST[TXNID]',`trans_amt`='$_POST[TNXAMOUNT]',`trans_status`='$_POST[STATUS]',`trans_res_msg`='$_POST[RESPMSG]', WHERE `booking_id`='$slct_fetch[booking_id]'";
+
+//     mysqli_query($con,$upd_query);
+// }
+//     redirect('pay_status.php?order='.$_POST['ORDERID']);
+// }
+// else{
+//     redirect('index.php');
+// }
 
 
 
+
+
+
+
+
+// // If transaction data is available in the URL 
+// if(!empty($_GET['item_number']) && !empty($_GET['tx']) && !empty($_GET['amt']) && !empty($_GET['cc']) && !empty($_GET['st'])){ 
+//     // Get transaction information from URL 
+//     $item_number = $_GET['item_number'];  
+//     $txn_id = $_GET['tx']; 
+//     $payment_gross = $_GET['amt']; 
+//     $currency_code = $_GET['cc']; 
+//     $payment_status = $_GET['st']; 
+     
+//     // Get product info from the database 
+//     $productResult = $db->query("SELECT * FROM `booking_details` WHERE sr_no = ".$item_number); 
+//     $productRow = $productResult->fetch_assoc(); 
+     
+//     // Check if transaction data exists with the same TXN ID. 
+//     $prevPaymentResult = $db->query("SELECT * FROM `booking_order` WHERE  trans_id = '".$txn_id."'"); 
+ 
+//     if($prevPaymentResult->num_rows > 0){ 
+//         $paymentRow = $prevPaymentResult->fetch_assoc(); 
+//         $payment_id = $paymentRow['booking_id']; 
+//         $payment_gross = $paymentRow['trans_amt']; 
+//         $payment_status = $paymentRow['trans_status']; 
+//     }else{ 
+//         // Insert tansaction data into the database 
+//         $insert = $db->query("INSERT INTO `booking_order`(`user_id`, `trans_id`, `trans_amt`,`currency`,`trans_status`) VALUES('".$item_number."','".$txn_id."','".$payment_gross."','".$currency_code."','".$payment_status."')"); 
+//         $payment_id = $db->insert_id; 
+//     } 
+// } 
+
+// Once the transaction has been approved, we need to complete it.
+// if (array_key_exists('paymentId', $_GET) && array_key_exists('PayerID', $_GET)) {
+//     $transaction = $gateway->completePurchase(array(
+//         'payer_id'             => $_GET['PayerID'],
+//         'transactionReference' => $_GET['paymentId'],
+//     ));
+//     $response = $transaction->send();
+ 
+//     if ($response->isSuccessful()) {
+//         // The customer has successfully paid.
+//         $arr_body = $response->getData();
+ 
+//         $payment_id = $arr_body['booking_id'];
+//         $payer_id = $arr_body['user_id'];
+//         // $payer_email = $arr_body['payer']['payer_info']['email'];
+//         $amount = $arr_body['trans_amt'];
+//         $currency = PAYPAL_CURRENCY;
+//         $payment_status = $arr_body['trans_status'];
+ 
+//         $db->query("INSERT INTO `booking_order`(`booking_id`, `user_id`, `trans_amt`, `trans_status`, `currency`) VALUES('". $payment_id ."', '". $payer_id ."', '". $amount ."', '". $currency ."', '". $payment_status ."')");
+ 
+//         echo "Payment is successful. Your transaction id is: ". $payment_id;
+//     } else {
+//         echo $response->getMessage();
+//     }
+// } else {
+//     echo 'Transaction is declined';
+// }
 ?>
-
-
-<html>
-    <head>
-        <title>Processing</title>
-    </head>
-    <body>
-        <h1>Please do not refresh this page...</h1>
-        <form method="POST" action="<?php echo PAYPAL_URL;?>" name="f1">
-        <input type="hidden" name="business" value="<?php echo PAYPAL_ID;?>">
-        
-        <input type="hidden" name="cmd" value="_xclick">
-                  <!--- Specify URLS-->
-         <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL?>"> 
-         <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL?>"> 
-    </form>
-
-
-
-    <div class="container">
-        <div class="status">
-            <?php 
-            
-            if(!empty($payment_id)){ ?>
-
-            <h4>Payment Information</h4>
-            <p><b>Reference Number:</b><?php echo $payment_id; ?></p>
-            <p><b>Transcation ID:</b><?php echo $txn_id; ?></p>
-            <p><b>Paid Amount:</b><?php echo $payment_id; ?></p>
-            <p><b>Reference Number:</b><?php echo $payment_gross; ?></p>
-            <p><b>Payment Status:</b><?php echo $payment_status; ?></p>
-            
-
-            <h4>Reservation Information</h4>
-            <p><b>Name:</b><?php echo $CUST_ID ?></p>
-            <p><b>Room Price:</b><?php echo $TXN_AMOUNT ?></p>
-            
-            <?php } else { ?>
-                <h1 class="error">Your Payment has failed</h1>
-            <?php } ?>
-          
-         
-        </div>
-        <a href="index.php" class="btn-link">Back to Room Reservation</a>
-    </div>
-
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-        document.f1.submit();
-    </script>
-    </body>
-</html>
-
-
-
-
 

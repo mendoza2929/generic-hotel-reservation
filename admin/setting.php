@@ -18,7 +18,7 @@ adminLogin();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLC HOMES - Setting</title>
+    <title>Hotel Reservation - Setting</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="dash.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -239,7 +239,7 @@ adminLogin();
           </button>
             </div>
             <p class="card-text" id="site_about">
-            When there are no available rooms, shutdown mode is activated, and no tenants are permitted to make reservations.
+            When there are no available rooms, Fully Reservation   mode is activated, and no tenants are permitted to make reservations.
             </p>
           </div>
 

@@ -129,7 +129,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 col-mb-5 mb-4 order-lg-1 order-mb-1 order-2">
-                <h3 class="mb-3">KLC HOMES</h3>
+          
                 <h5> <?php echo $home_r['site_about']?>  </h5>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-1 order-mb-2 order-1">

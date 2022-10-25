@@ -39,7 +39,7 @@
     
   <div class="login-form text-center rounded bg-white shadow overflow-hidden">
       <form method="POST" autocomplete="off">
-          <h4 class="bg-secondary text-white py-3 ">ADMIN KLC HOMES <i class="bi bi-house-fill"></i></h4>
+          <h4 class="bg-secondary text-white py-3 ">Hotel Admin Reservation <i class="bi bi-house-fill"></i></h4>
           <div class="p-4">
               <div class="mb-3">
                   

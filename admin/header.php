@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="container-fluid admin-dash text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-        <h3 class="mb-0"><i class="bi bi-house"></i> KLC ADMIN</h3>
-        <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3">Logout <i class="bi bi-box-arrow-right"></i> </a>
+        <h3 class="mb-0"><i class="bi bi-house"></i> Hotel Reservation System</h3>
+        <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3"> <i class="bi bi-box-arrow-right"></i> Logout  </a>
     </div>
 
     <div class="col-lg-2  border-top border-3 dashboard admin-navbar" id="dashboard">
@@ -27,6 +27,22 @@
         <li class="nav-item navbar-admin">
         <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-people"></i> Dashboard</a>
           </li>
+         <li class="nav-item navbar-admin">
+         <button class="btn text-white px-3 w-100 shadow-none text-start d-flex align-items-center justify-content-between " type="button" data-bs-toggle="collapse" data-bs-target="#bookingLinks" >
+        <span><i class="bi bi-journal-check"></i> Reservation</span>
+         <span><i class="bi bi-caret-down-fill"></i></i></span>
+        </button>
+
+        <div class="collapse show px-3 small mb-2" id="bookingLinks">
+            <ul class="nav nav-pills flex-column rounded border border-secondary mb-2">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="new_bookings.php">New Reservation</a>
+              </li>
+           
+            </ul>
+        </div>  
+
+         </li>
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="rooms.php"><i class="bi bi-house-door"></i> Rooms</a>
           </li>

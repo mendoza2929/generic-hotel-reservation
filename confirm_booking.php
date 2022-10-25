@@ -209,13 +209,12 @@ if($home_r['shutdown']==1){
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
            
-            <form action="success.php" id="booking_form" method="POST">
+            <form action="charge.php" id="booking_form" method="POST" class="paypal">
               <h6 class="mb-3 text-center fw-bold">Reservation Details</h6>
 
-              <!---identify your business so that you can collectt the payment-->
-              <input type="hidden" name="business" value="<?php echo PAYPAL_ID;?>">
 
-              <input type="hidden" name="cmd" value="_xclick">
+
+           
 
                 <div class="row">
                   <div class="col-md-6 mb-3">
@@ -243,15 +242,11 @@ if($home_r['shutdown']==1){
                       <span class="visually-hidden">Loading...</span>
                     </div>
                   <h6 class="text-center fw-bold text-danger" id="pay_info">Please provide check-in & check-out date first!</h6>
+  
 
+               
                 
-
-                  <!--- Specify URLS-->
-                  <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL?>"> 
-                  <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL?>"> 
-
-                
-                  <button name="pay_now" type="submit" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Pay Now</button>
+                  <button name="pay_now" type="submit" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Reserve Now</button>
                   </div>
                 </div>
             </form>
@@ -852,7 +847,7 @@ function check_availability(){
                 pay_info.innerText == "Room not available for this check-in date!";
               }
               else{
-                pay_info.innerHTML = "No. of Month: "+data.month+"<br>Total Amount To Pay: ₱"+data.payment;
+                pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount To Pay: ₱"+data.payment;
                 pay_info.classList.replace('text-danger', 'text-dark');
                 booking_form.elements['pay_now'].removeAttribute('disabled');
               }

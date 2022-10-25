@@ -1,14 +1,11 @@
-<?php 
+<?php
 
-
-$db =  new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-
-//display error if failed to connect to database
-
-
-if($db->connect_error){
-    printf("connection failed: %s\n",$db->connect_error);   
+$db_conn = mysqli_connect("localhost", "root", "", "klc");
+// Check connection
+if($db_conn === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
+error_reporting(E_ALL);
+ini_set('display_errors','Off');
 
 ?>

@@ -16,14 +16,19 @@ if(isset($_POST['check_availability'])){
 
     //check in and out validations
 
+    // $checkin_date = new DateTime($frm_data['check_in']);
+    // $checkout_date = new DateTime($frm_data['check_out']);
+    // $today_date = $checkin_date->diff($checkout_date);
+
+    // $yearsInMonths = $today_date->format('%r%y') * 12;
+    // $months = $today_date->format('%r%m');
+
+    // $totalMonths = $yearsInMonths + $months;
+
+    $today_date = new DateTime(date("Y-m-d"));
     $checkin_date = new DateTime($frm_data['check_in']);
-    $checkout_date = new DateTime($frm_data['check_out']);
-    $today_date = $checkin_date->diff($checkout_date);
+    $checkout_date= new DateTime($frm_data['check_out']);
 
-    $yearsInMonths = $today_date->format('%r%y') * 12;
-    $months = $today_date->format('%r%m');
-
-    $totalMonths = $yearsInMonths + $months;
 
 
 
@@ -51,13 +56,15 @@ if(isset($_POST['check_availability'])){
 
         // run query to check the room is available or not
 
-        $count_months =   $totalMonths;
-        $payment = $_SESSION['room']['price'] * $count_months;
-
+        // $count_months =   $totalMonths;
+        // $payment = $_SESSION['room']['price'] * $count_months;
+        $count_days = date_diff($checkin_date,$checkout_date)->days;
+        $payment = $_SESSION['room']['price'] * $count_days;
+ 
         $_SESSION['room']['payment'] = $payment;
         $_SESSION['room']['available'] = true;
         
-    $result = json_encode(["status"=>'available',"month"=>$count_months,"payment"=>$payment]);
+    $result = json_encode(["status"=>'available',"days"=>$count_days,"payment"=>$payment]);
         echo $result;
         
     }
