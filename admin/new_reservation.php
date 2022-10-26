@@ -10,7 +10,7 @@
    
     if(isset($_POST['get_bookings'])){  
         
-        $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE bo.booking_status = 'booked' AND bo.arrival = 0 ORDER BY bo.booking_id ASC ";
+        $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE bo.booking_status = 'booked' AND bo.arrival = 0 ORDER BY bo.booking_id DESC ";
 
         $res = mysqli_query($con,$query);
 
@@ -53,12 +53,12 @@
                     <b>Date: </b> $date
                 </td>
                 <td>
-                <button type='button' class='btn text-white btn-sm fw-bold bg-success shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
+                <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold bg-success shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
                   Room Number
                 </button>
                 <br>
 
-                <button type='button' class='btn btn-outline-danger mt-2 btn-sm fw-bold shadow-none'>
+                <button type='button' onclick='cancel_booking($data[booking_id])' class='btn btn-outline-danger mt-2 btn-sm fw-bold shadow-none'>
                 Cancel Reservation
               </button>
                 </td>
@@ -75,78 +75,35 @@
 
 
 
+if(isset($_POST['assign_room'])){  
+        
+  $frm_data = filteration($_POST);
+
+  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.arrival = ?, bd.room_no = ? WHERE bo.booking_id = ? ";
+
+  $values = [1,$frm_data['room_no'],$frm_data['booking_id']];
+
+  $res = update($query,$values,'isi');
+
+  echo ($res==2) ? 1 : 0;  //it will update 2 rows so it will return 2 
+
+}
+
   
 
-    if(isset($_POST['remove_user'])){
+    if(isset($_POST['cancel_booking'])){
         $frm_data = filteration($_POST);
 
+        $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=? ";
+
+        $values = ['cancelled',0,$frm_data['booking_id']];
+
+        $res = update($query,$values,'sii');
+
+        echo $res;
     
-      $res = delete("DELETE FROM `user_cred` WHERE `id`=? AND  `is_verified`=?",[$frm_data['user_id'],0],'ii');
      
-      if($res){
-        echo 1;
-      }else{
-        echo 0;
-      }
     
-    }
-    
-
-    if(isset($_POST['search_user'])){  
-
-        $frm_data = filteration($_POST);
-        $query = "SELECT * FROM  `user_cred` WHERE `name` LIKE ?";
-
-        $res = select($query,["%$frm_data[name]%"],'s');
-        $i=1;
-
-        
-
-        $data= "";
-
-        while($row = mysqli_fetch_array($res)){
-            
-            $del_btn = "
-            <button type='button' onclick='remove_user($row[id])' class='btn btn-danger btn-sm shadow-none'>
-            <i class='i bi-trash'></i>
-            </button>
-            ";
-
-            $verified = "<i class='bi bi-x-square text-danger'></i>";
-
-            if($row['is_verified']){
-                $verified = "<i class='bi bi-person-check text-success'></i>";
-                $del_btn  = "";
-            }
-
-            // $status = "<button onclick='toggleStatus($row[id],0)' class='btn btn-success btn-sm shadow-none'>Active</button>";
-
-            // if(!$row['status']){
-            //     $status = "<button onclick='toggleStatus($row[id],1)' class='btn btn-danger btn-sm shadow-none'>Inactive</button>";
-                
-            // }
-
-         
-
-
-
-            $date = date("d-m-y",strtotime($row['datentime']));
-
-            $data.= "
-               <tr>
-                <td>$i</td>
-                <td>$row[name]</td>
-                <td>$row[email]</td>
-                <td>$row[phonenum]</td>
-                <td>$row[address]</td>
-                <td>$verified</td>
-                <td>$date</td>
-                <td>$del_btn</td>
-               </tr>
-            ";
-            $i++;
-    }
-    echo $data;
 }
 
 

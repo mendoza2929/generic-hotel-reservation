@@ -134,6 +134,7 @@ adminLogin();
                          <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
                             Note: Assign Room Number only when user has been arrived!
                         </span>
+                        <input type="hidden" name="booking_id">
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
@@ -160,7 +161,7 @@ require ("script.php");
 
 
 
-function get_bookings(){
+function get_bookings(search=''){
         
     let xhr = new XMLHttpRequest();
         xhr.open("POST","new_reservation.php",true);
@@ -169,40 +170,76 @@ function get_bookings(){
         xhr.onload = function(){
             document.getElementById('table-data').innerHTML = this.responseText;
         }
-        xhr.send('get_bookings');
+        xhr.send('get_bookings+search='+search);
 
 }
 
+let assign_room_form = document.getElementById('assign_room_form');
+
+function assign_room(id){
+    assign_room_form.elements['booking_id'].value=id;
+}
+
+assign_room_form.addEventListener('submit',function(e){
+    e.preventDefault();
+
+    let data = new FormData();
+
+    data.append('room_no',assign_room_form.elements['room_no'].value);
+    data.append('booking_id',assign_room_form.elements['booking_id'].value);
+    data.append('assign_room','');
 
 
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","new_reservation.php",true);
+
+    xhr.onload = function(){
+        var myModal = document.getElementById('assign-room');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
 
 
+        if(this.responseText==1){
+            Swal.fire(
+                'Good job!',
+                'Room Number Assign Reservation Finalized',
+                'success'
+                )
+                assign_room_form.reset();
+                get_bookings();
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                })
+        }
+    }
 
-
-
-
+    xhr.send(data);
     
+});
 
-    
-    function remove_user(user_id){
-        
-        if(confirm("Are you sure you want to remove this tenant?")){
+
+function cancel_booking(id){
+
+    if(confirm("Are you sure you want to cancel this reservation ?")){
             let data = new FormData();
-            data.append('user_id',user_id);
-            data.append('remove_user','');
+            data.append('booking_id',id);
+            data.append('cancel_booking','');
             
         let xhr = new XMLHttpRequest();
-         xhr.open("POST","users_ajax.php",true);
+         xhr.open("POST","new_reservation.php",true);
     
 
             xhr.onload = function(){
                 if(this.responseText== 1){
                      Swal.fire(
                     'Deleted!',
-                    'Tenant has been deleted',
+                    'Reservation has been cancel',
                     'success'
                     )
-                    get_users();
+                    get_bookings();
                 }else{
                     Swal.fire({
                 icon: 'error',
@@ -215,8 +252,51 @@ function get_bookings(){
             }
             xhr.send(data);
         }
+}
 
-    }
+
+
+
+
+
+
+
+    
+
+    
+    // function remove_user(user_id){
+        
+    //     if(confirm("Are you sure you want to remove this tenant?")){
+    //         let data = new FormData();
+    //         data.append('user_id',user_id);
+    //         data.append('remove_user','');
+            
+    //     let xhr = new XMLHttpRequest();
+    //      xhr.open("POST","users_ajax.php",true);
+    
+
+    //         xhr.onload = function(){
+    //             if(this.responseText== 1){
+    //                  Swal.fire(
+    //                 'Deleted!',
+    //                 'Tenant has been deleted',
+    //                 'success'
+    //                 )
+    //                 get_users();
+    //             }else{
+    //                 Swal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Something went wrong!',
+                
+    //             })
+    //             }
+              
+    //         }
+    //         xhr.send(data);
+    //     }
+
+    // }
 
 
 
