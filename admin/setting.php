@@ -200,10 +200,9 @@ adminLogin();
                                 <input type="text" name="tw" id="tw_input" class="form-control shadow-none">
                               </div>
                               <div class="mb-3">
-                              <label class="form-label fw-bold">iFrame Src</label>
+                         
                               <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="bi bi-compass"></i></span>
-                                <input type="text" name="iframe" id="iframe_input" class="form-control shadow-none" required>
+                              
                               </div>
                             </div>
                             </div>

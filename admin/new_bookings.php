@@ -74,18 +74,18 @@ adminLogin();
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-y">
-                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Users</h3>
+                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Reservation</h3>
 
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
 
                         <div class="text-end mb-4">
-                           <input type="text" oninput="search_user(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
+                           <input type="text" oninput="get_bookings(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
                         </div>
 
 
                            <div class="table-responsive">
-                           <table class="table table-hover border " style="min-width:1300px;">
+                           <table class="table table-hover border " style="min-width:1200px;">
                             <thead>
                                 <tr class="bg-secondary text-white">
                                 <th scope="col">#</th>
@@ -170,7 +170,7 @@ function get_bookings(search=''){
         xhr.onload = function(){
             document.getElementById('table-data').innerHTML = this.responseText;
         }
-        xhr.send('get_bookings+search='+search);
+        xhr.send('get_bookings&search='+search);
 
 }
 

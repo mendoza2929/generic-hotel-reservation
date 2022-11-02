@@ -38,6 +38,9 @@
               <li class="nav-item">
                 <a class="nav-link text-white" href="new_bookings.php">New Reservation</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="records.php">Records</a>
+              </li>
            
             </ul>
         </div>  

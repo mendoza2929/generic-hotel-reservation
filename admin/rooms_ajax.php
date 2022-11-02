@@ -82,13 +82,15 @@
                         <button type='button' onclick='edit_details($row[id])' class='btn btn-warning btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#edit-room'>
                         <i class='i bi-pencil-square'></i>
                         </button>
-                        <button type='button' onclick='remove_room($row[id])' class='btn btn-danger btn-sm shadow-none'>
-                        <i class='i bi-trash'></i>
+                      
                         </button>
                     </td>
                 </tr>
             ";
             $i++;
+
+            //  <button type='button' onclick='remove_room($row[id])' class='btn btn-danger btn-sm shadow-none'>
+     
     }
     echo $data;
 }

@@ -90,7 +90,7 @@ if($home_r['shutdown']==1){
                   </button>
                   <ul class="dropdown-menu dropdown-menu-lg-end ">
                     <li><a class="dropdown-item btn btn-danger " href="profile.php">Profile</a></li>
-                    <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
+                    <li><a class="dropdown-item" href="bookings.php">Your Reservation</a></li>
                     <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
                   </ul>
                 </div>

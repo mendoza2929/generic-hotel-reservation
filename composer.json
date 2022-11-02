@@ -1,6 +1,5 @@
 {
     "require": {
-        "league/omnipay": "^3.2",
-        "omnipay/paypal": "^3.0"
+        "mpdf/mpdf": "^6.1"
     }
 }

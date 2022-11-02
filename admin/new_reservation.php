@@ -9,13 +9,21 @@
 
    
     if(isset($_POST['get_bookings'])){  
-        
-        $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE bo.booking_status = 'booked' AND bo.arrival = 0 ORDER BY bo.booking_id DESC ";
 
-        $res = mysqli_query($con,$query);
+        $frm_data = filteration($_POST);
+        
+        $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE (bo.order_id LIKE ? OR bd.phonenum LIKE ? OR bd.user_name LIKE ? ) AND  (bo.booking_status =?  AND bo.arrival=?) ORDER BY bo.booking_id DESC ";
+
+        $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","booked",0],'sssss');
 
         $i=1;
+
         $table_data = "";
+
+        if(mysqli_num_rows($res)==0){
+          echo"<b>No Data Found!</b>";
+          exit;
+        }
 
         while($data = mysqli_fetch_array($res)){
 
