@@ -140,7 +140,7 @@
 
 
 if(isset($_POST['assign_room'])){  
-        
+         
   $frm_data = filteration($_POST);
 
   $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.arrival = ?, bd.room_no = ? WHERE bo.booking_id = ? ";

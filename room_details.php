@@ -203,16 +203,28 @@ if($home_r['shutdown']==1){
 
               
               echo<<<price
-                <h4>₱ $room_data[price] per month</h4>
+                <h4>₱ $room_data[price] per day</h4>
               price;
+
+              $rating_q = "SELECT AVG(rating) AS `avg_rating` FROM `rating_review` WHERE `room_id`='$room_data[id]' ORDER BY `sr_no` DESC LIMIT 20";
+
+              $rating_res = mysqli_query($con,$rating_q);
+              $rating_fetch = mysqli_fetch_assoc($rating_res);
+      
+              $rating_data = "";
+      
+              if($rating_fetch['avg_rating']!=NULL){
+        
+                for($i=0; $i< $rating_fetch['avg_rating']; $i++){
+                  $rating_data .=" <i class='bi bi-star-fill text-warning'></i>";
+                }    
+              
+              }
+
 
               echo<<<rating
                 <div class="mb-3">
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
+                    $rating_data
                 </div>
               rating;
 
@@ -283,6 +295,7 @@ if($home_r['shutdown']==1){
 
 
     <div class="col-12 mt-4 px-4">
+      
         <div class="mb-4">
           <h5>Description</h5>
           <p>
@@ -291,25 +304,49 @@ if($home_r['shutdown']==1){
         </div>
         <div>
           <h5 class="mb-3">Reviews & Rating</h5>
-          <div>
-          <div class="d-flex align-items-center mb-2">
-            <img src="" width="30px">
-            <h6 class="m-0 ms-2">Random user1</h6>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-          </div>
-        </div>
+          
+          <?php 
+
+          $review_q = "SELECT rr.*, uc.name AS uname, r.name AS rname FROM `rating_review` rr INNER JOIN `user_cred` uc ON rr.user_id = uc.id INNER JOIN `rooms` r ON rr.room_id = r.id WHERE rr.room_id='$room_data[id]' ORDER BY `sr_no` DESC LIMIT 15";
+          
+          $review_res = mysqli_query($con,$review_q);
+
+          if(mysqli_num_rows($review_res)==0){
+            echo 'No reviews yet!';
+          }else{
+            while($row = mysqli_fetch_array($review_res)){
+
+              $stars = "<i class'bi bi-star-fill text-warning'></i> ";
+
+              for($i=0; $i<$row['rating']; $i++){
+                $stars .= " <i class='bi bi-star-fill text-warning'></i>";
+              }
+             
+              echo<<<reviews
+                  
+              <div>
+                <div class="d-flex align-items-center mb-2">
+                  <h6 class="m-0 ms-2">$row[uname]</h6>
+                </div>
+                $stars
+                <p>$row[review]</p>
+
+              </div>
+
+              reviews;
+            }
+          }
+          
+                  
+          
+          ?>
+
+  
           </div>
         </div>
     </div>
+
+    
 
    </div>
   </div>
@@ -570,9 +607,15 @@ if(isset($_GET['account_recovery'])){
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
+ <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
 
       <script>
 

@@ -52,6 +52,9 @@
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="facilities.php"><i class="bi bi-house-heart-fill"></i> Facilities</a>
           </li>
+          <li class="nav-item navbar-admin">
+            <a class="nav-link " href="rating_reviews.php"><i class="bi bi-chat-left-heart"></i> Rating & Reviews</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link  " href="users.php"><i class="bi bi-people"></i> All Users</a>
           </li>

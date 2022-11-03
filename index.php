@@ -217,7 +217,34 @@ if($home_r['shutdown']==1){
         // if($home_r['shutdown']){
         //   $book_btn
         // }
+
+
+        $rating_q = "SELECT AVG(rating) AS `avg_rating` FROM `rating_review` WHERE `room_id`='$room_data[id]' ORDER BY `sr_no` DESC LIMIT 20";
+
+        $rating_res = mysqli_query($con,$rating_q);
+        $rating_fetch = mysqli_fetch_assoc($rating_res);
+
+
+        $rating_data = "";
+
+      
+
+        if($rating_fetch['avg_rating']!=NULL){
+          $rating_data ="
+
+          <div class='rating mb-4'>
+              <span class='badge rounded-pill bg-light'>
+          
+          ";
+
+          for($i=0; $i<$rating_fetch['avg_rating']; $i++){
+            $rating_data .="<i class='bi bi-star-fill text-warning'></i>";
+          }
+
+          $rating_data .=" </span>
+          </div>";
         
+        }
 
         echo<<<data
 
@@ -231,7 +258,7 @@ if($home_r['shutdown']==1){
               <h6 class="mb-1">Facilities</h6>
               $facilities_data
             </div>
-            <div class="guests">
+            <div class="guests mb-2">
             <h6 class="mb-1">Guests</h6>
             <span class="badge rounded-pill bg-light text-dark text-wrap">
               $room_data[adult] Adults
@@ -240,16 +267,8 @@ if($home_r['shutdown']==1){
               $room_data[children] Children
             </span>
           </div>
-            <div class="rating mb-4">
-              <span class="badge rounded-pill bg-light">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-              </span>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
+            $rating_data
+            <div class="d-flex justify-content-between mt-2">
             <a href="room_details.php?id=$room_data[id]" class="btn btn-outline-dark  w-100 shadow-none">More Details</a>
             </div>
           </div>
@@ -337,63 +356,6 @@ Own water tank: Deep well – no water interruption</h5>
 </div> -->
 
 
-<!---Testimonials-------------->
-
-<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">TESTIMONIALS</h2>
-
-  <div class="container">
-    <div class="swiper swiper-textinomial">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center p-4">
-            <h6 class="m-0 ms-2">Random user1</h6>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-          </div>
-        </div>
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center p-4">
-            <h6 class="m-0 ms-2">Random user1</h6>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-          </div>
-        </div>
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center p-4">
-            <h6 class="m-0 ms-2">Random user1</h6>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur laborum beatae optio molestias, sint iste hic autem ad aperiam deserunt cum perspiciatis illo veniam dignissimos, quod culpa, reiciendis libero?
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-          </div>
-        </div>
-
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-  </div>
 
 
   <!----REACH US--->
@@ -707,7 +669,7 @@ if(isset($_GET['account_recovery'])){
           slideShadows:false,
         },
         pagination:{
-          el:".swiper-pagin ation",
+          el:".swiper-pagination",
         },
         breakpoints:{
           320:{

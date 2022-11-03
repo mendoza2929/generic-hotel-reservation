@@ -29,7 +29,7 @@ include_once 'dbconnection.php';
     />
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<script src="https://www.paypal.com/sdk/js?client-id=ATCuaMwZvvLQw_uUsfFXHMjrMA0S99bUGeEOy2l8LxLDTrTErChioDQ2KPsINWzRiUpKCD0pWxgsyLtY"></script>
+
 
 </head>
 
@@ -162,9 +162,15 @@ if($home_r['shutdown']==1){
             if($data['booking_status']=='booked'){
               $status_bg = "bg-success";
               if($data['arrival']==1){
-                $btn="<button type='button' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
+              //   $btn="<button type='button' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
+              //   Rate & Review
+              // </button>"; 
+
+              if($data['rate_review']==0){
+                $btn.="<button type='button' onclick='review_room($data[booking_id],$data[room_id])' data-bs-toggle='modal' data-bs-target='#reviewModal' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
                 Rate & Review
               </button>"; 
+              }
                 
               }else{
                 $btn="<button onclick='cancel_booking($data[booking_id])'type='button' class='btn btn-outline-danger btn-sm fw-bold shadow-none'>
@@ -218,14 +224,20 @@ if($home_r['shutdown']==1){
           ?>
     
       
-        
-   
-            
-
-
-   
+      
    </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
 
   <?php 
 
@@ -300,6 +312,58 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
   </div>
 
   <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
+
+    <!-- Rate Review Modal -->
+ <div class="modal fade" id="reviewModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content">
+            <form id="review-form" method="POST">
+            <div class="modal-header">
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-clipboard2-pulse"></i> Rate & Review </h5>
+              <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Rating Room </label>
+                
+                  <select class="form-select shadow-none" name="rating">
+                    
+                  <option value="5">Excellent</option>
+                  <option value="4">Good</option>
+                  <option value="3">Okay</option>
+                  <option value="2">Poor</option>
+                  <option value="1">Bad</option>
+
+                  </select>
+                      
+
+                </div>
+
+                <div class="mb-4">
+
+                <label class="form-label">Review</label>
+                <textarea  class="form-control shadow-none mb-2" row="3" name="review" required ></textarea>
+                </div>
+                  <input type="hidden" name="booking_id">
+                  <input type="hidden" name="room_id">
+                
+                  <div class="text-end text-center">
+                    <button type="submit" class="btn btn-success shadow-none">Submit</button>
+                  </div>
+               
+             
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
@@ -479,7 +543,6 @@ if(isset($_GET['account_recovery'])){
 
 
 
-
  
 
 
@@ -494,6 +557,7 @@ if(isset($_GET['account_recovery'])){
 
 
 
+  
 
 
 
@@ -501,6 +565,8 @@ if(isset($_GET['account_recovery'])){
 
       <script>
 
+
+  
 
  
   function cancel_booking(id){
@@ -529,6 +595,50 @@ if(isset($_GET['account_recovery'])){
     xhr.send('cancel_booking&id='+id);
     }
   }
+
+
+
+
+  let review_form = document.getElementById('review-form');
+
+  function review_room(bid,rid){
+    review_form.elements['booking_id'].value = bid;
+    review_form.elements['room_id'].value = rid;
+  }
+
+
+  review_form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    let data = new FormData();
+
+    data.append('review_form','');
+    data.append('rating',review_form.elements['rating'].value);
+    data.append('review',review_form.elements['review'].value);
+    data.append('booking_id',review_form.elements['booking_id'].value);
+    data.append('room_id',review_form.elements['room_id'].value);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","ajax/review_room.php",true);
+
+    xhr.onload = function(){
+        
+      if(this.responseText == 1){
+        window.location.href='bookings.php?review_status=true';
+      }else{
+        var myModal = document.getElementById('reviewModal');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+
+      alert('error',"Rating & Review Failed");
+      }
+ 
+    }
+
+
+    xhr.send(data);
+
+  })
 
 
 
