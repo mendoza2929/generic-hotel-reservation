@@ -93,7 +93,7 @@ adminLogin();
                                 <th scope="col">Room Details</th>
                                 <th scope="col">Reservation Details</th> 
                                 <th scope="col">Status</th> 
-                                <th scope="col">Action</th> 
+                               
                                 </tr>
                             </thead>
                             <tbody id="table-data">

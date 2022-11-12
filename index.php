@@ -57,7 +57,7 @@ if($home_r['shutdown']==1){
 
 <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top nav-user">
       <div class="container-fluid">
-        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><i class="bi bi-house-fill"></i> <?php echo $home_r['site_title']?></a>
+        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"> <?php echo $home_r['site_title']?></a>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -132,37 +132,45 @@ if($home_r['shutdown']==1){
       <div class="row">
         <div class="col-lg-12 bg-white shadow p-4 rounded ">
           <h5 class="text-center mb-4">Check Availability</h5>
-          <form>
+          <form action="rooms.php">
             <div class="row align-items-end">
               <div class="col-lg-3 mb-3">
                 <label class="form-label" style="font-weight: 500;">Check-in</label>
-                <input type="date" class="form-control shadow-none">
+                <input type="date" class="form-control shadow-none" name="checkin" required>
               </div>
               <div class="col-lg-3 mb-3">
                 <label class="form-label" style="font-weight: 500;">Check-out</label>
-                <input type="date" class="form-control shadow-none">
+                <input type="date" class="form-control shadow-none"  name="checkout" required>
               </div>
               <div class="col-lg-2 mb-3">
                 <label class="form-label" style="font-weight: 500;">Adult</label>
-                <select class="form-select shadow-none">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5 </option>
+                <select class="form-select shadow-none" name="adult">
+                  <?php
+                  
+                  $guests_q = mysqli_query($con,"SELECT MAX(adult) AS `max_adult`, MAX(children) AS `max_children` FROM `rooms` WHERE `status`='1' AND `removed`='0'");
+                  $quests_res = mysqli_fetch_assoc($guests_q);
+
+                  for($i=1;$i<=$quests_res['max_adult'];$i++){
+                    echo"<option value='$i'>$i</option>";
+                  }
+
+                  ?>
                 </select>
               </div>
               <div class="col-lg-2 mb-3">
                 <label class="form-label" style="font-weight: 500;">Children</label>
-                <select class="form-select shadow-none">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5 </option>
+                <select class="form-select shadow-none" name="children">
+                  <?php 
+                  
+                  for($i=1;$i<=$quests_res['max_children'];$i++){
+                    echo"<option value='$i'>$i</option>";
+                  }
+                  
+                  
+                  ?>
                 </select>
               </div>
-
+              <input type="hidden" name="check_availability">
               <div class="col-lg-2 mb-lg-3 mt-2">
                 <button type="submit" class="btn btn-success text-white shadow-none">Check Availability</button>
               </div>

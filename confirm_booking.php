@@ -193,7 +193,7 @@ if($home_r['shutdown']==1){
           <div class="card p-3 shadow-sm rounded">
             <img src="$room_thumb"class="img-fluid rounded mb-3" ">
             <h5>$room_data[name]</h5>
-            <h6>₱ $room_data[price] per month</h6>
+            <h6>₱ $room_data[price] per day</h6>
           </div>
         data;
         

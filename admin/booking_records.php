@@ -94,9 +94,7 @@
                 <span class='badge $status_bg' >$data[booking_status]</span>
                 </td>
                 <td>
-                <button type='button' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-                <i class='bi bi-filetype-pdf'></i>
-              </button>
+               
                 </td>
             </tr>
             
