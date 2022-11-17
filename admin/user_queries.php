@@ -105,7 +105,7 @@ if(isset($_GET['del'])){
                              $i=1;
 
                              while($row = mysqli_fetch_assoc($data)){
-                                
+                                $date = date('d-m-Y',strtotime($row['datentime']));
                                 $seen = '';
                                 if($row['seen']!=1){
                                     $seen="<a href='?seen=$row[sr_no]' class='btn btn-sm  btn-success'><i class='bi bi-check-all'></i></a>";
@@ -119,7 +119,7 @@ if(isset($_GET['del'])){
                                     <td>$row[name]</td>
                                     <td>$row[email]</td>
                                     <td>$row[message]</td>
-                                    <td>$row[date]</td>
+                                    <td>$date</td>
                                     <td>$seen</td>
                                 </tr>
 
