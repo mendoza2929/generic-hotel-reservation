@@ -21,7 +21,7 @@ include_once 'dbconnection.php';
     <title>Reservation</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-      
+    <link rel="icon" href="img/logo.jpg">
     <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
@@ -61,7 +61,7 @@ if($home_r['shutdown']==1){
 
     <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><i class="bi bi-house-fill"></i><?php echo $home_r['site_title']?></a>
+        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><?php echo $home_r['site_title']?></a>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -93,7 +93,6 @@ if($home_r['shutdown']==1){
                 $_SESSION[uName]
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                   <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
@@ -180,8 +179,12 @@ if($home_r['shutdown']==1){
             }else if($data['booking_status']=='cancelled'){
               $status_bg = "bg-danger";
         
-              if($data['arrival']==0){
-                $btn="<span class='badge bg-warning'>Your Reservation Cancel</span>";
+              if($data['refund']==0){
+                $btn="  <div class='text-center'>
+              <span class='badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base'>
+                Refund: Contact the front desk for the manual refund process.
+              </span>
+              </div>";
               }
           //     else{
           //       $btn = "<a href='generate_pdf.php&gen_pdf&id=$data[booking_id]' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>

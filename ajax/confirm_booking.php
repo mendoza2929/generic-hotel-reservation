@@ -28,7 +28,9 @@ if(isset($_POST['check_availability'])){
     $today_date = new DateTime(date("Y-m-d"));
     $checkin_date = new DateTime($frm_data['check_in']);
     $checkout_date= new DateTime($frm_data['check_out']);
-
+    
+  
+   
 
 
 
@@ -78,6 +80,9 @@ if(isset($_POST['check_availability'])){
         // $payment = $_SESSION['room']['price'] * $count_months;
         $count_days = date_diff($checkin_date,$checkout_date)->days;
         $payment = $_SESSION['room']['price'] * $count_days;
+        
+
+
  
         $_SESSION['room']['payment'] = $payment;
         $_SESSION['room']['available'] = true;

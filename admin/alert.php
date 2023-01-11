@@ -2,7 +2,7 @@
 
 
     // frontend data
-    define('SITE_URL','http://127.0.0.1/klc/');
+    define('SITE_URL','https://generichotel.online/klc/');
     define('FEATURES_IMG_PATH',SITE_URL.'img/features/');
     define('ROOM_IMG_PATH',SITE_URL.'img/room/');
 

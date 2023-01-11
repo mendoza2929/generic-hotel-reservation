@@ -17,7 +17,7 @@ require('admin/alert.php');
     <title>KLC HOMES - About Us</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-      
+    <link rel="icon" href="img/logo.jpg">
     <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
@@ -82,7 +82,6 @@ if($home_r['shutdown']==1){
                   $_SESSION[uName]
                   </button>
                   <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                     <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
                     <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                   </ul>
@@ -122,21 +121,13 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
     <div class="my-5 px-4">
         <div class="h2 fw-bold text-center">ABOUT US</div>
         <div class="h-line bg-dark"></div>
+        <br>
+         <div class="text-center fw-bold" <h2> <?php echo $home_r['site_about']?>  </h5></div>
         <p class="text-center mt-3"> 
         </p>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6 col-mb-5 mb-4 order-lg-1 order-mb-1 order-2">
-          
-                <h5> <?php echo $home_r['site_about']?>  </h5>
-            </div>
-            <div class="col-lg-5 col-md-5 mb-4 order-lg-1 order-mb-2 order-1">
-                <img src="./img/b3.jpg" class="w-100" alt="">
-            </div>
-        </div>
-    </div>
+  
 
 
     

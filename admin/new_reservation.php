@@ -62,12 +62,12 @@
                 </td>
                 <td>
                 <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold bg-success shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
-                  Room Number
+                  <i class='bi bi-clipboard-plus'></i> Room Number
                 </button>
                 <br>
 
                 <button type='button' onclick='cancel_booking($data[booking_id])' class='btn btn-outline-danger mt-2 btn-sm fw-bold shadow-none'>
-                Cancel Reservation
+                <i class='bi bi-folder-x'></i> Cancel Reservation
               </button>
                 </td>
             </tr>

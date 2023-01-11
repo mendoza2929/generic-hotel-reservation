@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="dash.css">
 </head>
 <body>
+    
+    <?php 
+
+
+$home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+$values = [1];
+$home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+
+
+?>
 <div class="container-fluid admin-dash text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-        <h3 class="mb-0"><i class="bi bi-house"></i> Hotel Reservation System</h3>
+        <h3 class="mb-0"><i class="bi bi-house"></i><?php echo $home_r['site_title']?></h3>
         <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3"> <i class="bi bi-box-arrow-right"></i></a>
     </div>
 
@@ -37,6 +47,9 @@
             <ul class="nav nav-pills flex-column rounded border border-secondary mb-2">
               <li class="nav-item">
                 <a class="nav-link text-white" href="new_bookings.php">New Reservation</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link text-white" href="refund_bookings.php">Refund Reservation</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="records.php">Records</a>

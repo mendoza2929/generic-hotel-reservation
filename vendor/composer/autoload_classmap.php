@@ -21,6 +21,7 @@ return array(
     'INDIC' => $vendorDir . '/mpdf/mpdf/classes/indic.php',
     'MYANMAR' => $vendorDir . '/mpdf/mpdf/classes/myanmar.php',
     'OTLdump' => $vendorDir . '/mpdf/mpdf/classes/otl_dump.php',
+    'Omnipay\\Omnipay' => $vendorDir . '/omnipay/common/src/Omnipay.php',
     'PDFBarcode' => $vendorDir . '/mpdf/mpdf/classes/barcode.php',
     'SEA' => $vendorDir . '/mpdf/mpdf/classes/sea.php',
     'SVG' => $vendorDir . '/mpdf/mpdf/classes/svg.php',

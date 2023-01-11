@@ -80,6 +80,43 @@ adminLogin();
             </div>
           </div>
         </div>
+        
+        
+        
+            <!--<div class="card border-0 shadow-sm ">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="card-title m-0">General Color</h5>
+              <button type="button" class="btn btn-warning shadow-none btn-sm fw-bold " data-bs-toggle="modal" data-bs-target="#color">
+              <i class="bi bi-pencil-square"></i> Edit
+          </button>
+            </div>
+          </div>-->
+          
+          
+           <!--<div class="modal fade" id="color" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form action="color.php" method="post">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-palette"></i> General Color</h5>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Color</label>
+                 
+                   <input type="color" name="color" class="form-control shadow-none mt-2" required>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="change" class="btn btn-success shadow-none">Save</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>-->
 
 
 
@@ -179,7 +216,7 @@ adminLogin();
                           <div class="mb-3">
                             <label class="form-label fw-bold">Email</label>
                             <div class="input-group mb-3">
-                              <span class="input-group-text"><i class="bi bi-map"></i></span>
+                              <span class="input-group-text"><i class="bi bi-envelope-check"></i></span>
                               <input type="email" name="email" id="email_input" class="form-control shadow-none" required>
                             </div>
                           </div>
@@ -200,8 +237,11 @@ adminLogin();
                                 <input type="text" name="tw" id="tw_input" class="form-control shadow-none">
                               </div>
                               <div class="mb-3">
-                         
+                             <label class="form-label fw-bold">Iframe</label>
                               <div class="input-group mb-3">
+                                  
+                                    <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                  <input type="text" name="iframe" id="iframe_input" class="form-control shadow-none">
                               
                               </div>
                             </div>

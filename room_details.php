@@ -17,7 +17,7 @@ require('admin/alert.php');
     <title>KLC HOMES - Room-Details</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-      
+       <link rel="icon" href="img/logo.jpg">
     <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
@@ -103,7 +103,7 @@ if($home_r['shutdown']==1){
                 $_SESSION[uName]
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+             
                   <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>

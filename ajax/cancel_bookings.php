@@ -15,7 +15,7 @@ session_start();
     if(isset($_POST['cancel_booking'])){
         $frm_data = filteration($_POST);
 
-        $query = "UPDATE `booking_order` SET `booking_status`=?, `arrival`=? WHERE `booking_id`=? AND `user_id`=?"; 
+        $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=? AND `user_id`=?"; 
 
         $values = ['cancelled',0,$frm_data['id'],$_SESSION['uId']];
 

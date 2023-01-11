@@ -3,8 +3,12 @@
 *{
     font-family: 'Poppins',sans-serif;
     scroll-behavior: smooth;
- 
     
+    
+}
+
+body{
+    color:black;
 }
 
 :root{

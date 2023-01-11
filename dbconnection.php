@@ -1,6 +1,6 @@
 <?php
 
-$db_conn = mysqli_connect("localhost", "root", "", "klc");
+$db_conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 // Check connection
 if($db_conn === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());

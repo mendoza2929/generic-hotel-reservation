@@ -60,51 +60,7 @@ if(isset($_POST['pay_now'])){
     insert($query2,[$booking_id,$_SESSION['room']['name'],$_SESSION['room']['price'],$TXN_AMOUNT,$frm_data['name'],$frm_data['phonenum'],$frm_data['address']],'issssss');
 
 
-    $slct_query = "SELECT `booking_id` , `user_id` FROM `booking_order` WHERE `order_id`='$_POST[ORDERID]'";
-    redirect('pay_status.php?order='.$ORDER_ID);
-// $slct_query = "SELECT `booking_id` , `user_id` FROM `booking_order` WHERE `order_id`='$_POST[ORDERID]'";
-
-// $slct_res = mysqli_query($con,$slct_query);
-
-// if(mysqli_num_rows($slct_res)==0){
-//     redirect('index.php');
-
-// }
-
-// $slct_fetch = mysqli_fetch_assoc($slct_res);
-
-// if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
-//     regenerate_session($slct_fetch['user_id']);
-// }
-    
-
-//     $upd_query = "UPDATE `booking_order` SET  `booking_status`='booked' WHERE `booking_id`='$slct_fetch[booking_id]'";
-//     mysqli_query($con,$upd_query);
-
-
-
-
-//     $upd_query = "UPDATE `booking_order` SET  `booking_status`='booked',`trans_id`='$_POST[TXNID]',`trans_amt`='$_POST[TNXAMOUNT]',`trans_status`='$_POST[STATUS]',`trans_res_msg`='$_POST[RESPMSG]', WHERE `booking_id`='$slct_fetch[booking_id]'";
-
-
-//     mysqli_query($con,$upd_query);
-
-       
-// $slct_query = "SELECT `booking_id` , `user_id` FROM `booking_order` WHERE `order_id`='$_POST[ORDERID]'";
-
-// $slct_res = mysqli_query($con,$slct_query);
-
-// if(mysqli_num_rows($slct_res)==0){
-//     redirect('index.php');
-
-// }
-
-// $slct_fetch = mysqli_fetch_assoc($slct_res);
-
-// if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
-//     regenerate_session($slct_fetch['user_id']);
-// }
-
+  
 
 
 
@@ -113,60 +69,52 @@ if(isset($_POST['pay_now'])){
 
  
 
-//  if (empty($_POST['item_number'])) {
-//     throw new Exception('This script should not be called directly, expected post data');
-// }
-
-
-// $payer = new Payer();
-// $payer->setPaymentMethod('paypal');
-
-// // Set some example data for the payment.
-// $currency = 'PHP';
-// // $item_qty = 1;
-// $amountPayable = $_POST['amount'];
-// $product_name = $_POST['item_name'];
-// $item_code = $_POST['item_number'];
-// $description = 'Paypal transaction';
-// $invoiceNumber = uniqid();
-// $my_items = array(
-// 	array('name'=> $product_name, 'quantity'=> $item_qty, 'price'=> $amountPayable, 'sku'=> $item_code, 'currency'=> $currency)
-// );
-	
-// $amount = new Amount();
-// $amount->setCurrency($currency)
-//     ->setTotal($amountPayable);
-
-// $items = new ItemList();
-// $items->setItems($my_items);
-	
-// $transaction = new Transaction();
-// $transaction->setAmount($amount)
-//     ->setDescription($description)
-//     ->setInvoiceNumber($invoiceNumber)
-// 	->setItemList($items);
-
-// $redirectUrls = new RedirectUrls();
-// $redirectUrls->setReturnUrl($paypalConfig['return_url'])
-//     ->setCancelUrl($paypalConfig['cancel_url']);
-
-// $payment = new Payment();
-// $payment->setIntent('sale')
-//     ->setPayer($payer)
-//     ->setTransactions([$transaction])
-//     ->setRedirectUrls($redirectUrls);
-
-// try {
-//     $payment->create($apiContext);
-// } catch (Exception $e) {
-//     throw new Exception('Unable to create link for payment');
-// }
-
-// header('location:' . $payment->getApprovalLink());
-// exit(1);
-
 
 ?>
+
+
+
+<html>
+
+<head>
+    <title>Proccessing</title>
+
+</head>
+    
+    <body>
+        <h1>Please do not refresh this page...</h1>
+
+        <form action="<?php echo PAYPAL_URL;?>" name="f1">
+
+         <!-- Identify your bussiness so that you can collect the payment -->
+         <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?>">
+
+<!-- Specify a buy now button -->
+<input type="hidden" name="cmd" value="_xclick">
+
+<input type="hidden" name="item_name" value="<?php echo $CUST_ID; ?>">
+<input type="hidden" name="item_number" value="<?php echo  $ORDER_ID; ?>">
+<input type="hidden" name="amount" value="<?php echo $TXN_AMOUNT; ?>">
+<input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>">
+
+
+
+<!-- Specify URLs -->
+<input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL; ?>">
+<input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL; ?>">
+
+
+    
+    </form>
+
+    <script type="text/javascript">
+        document.f1.submit();
+    </script>
+
+    </body>
+
+</html>
+
 
 
 

@@ -1,9 +1,9 @@
  <?php 
  
   $hname='localhost';
-  $uname='root';
-  $pass= '';
-  $db="klc";
+  $uname='u964845835_hotel';
+  $pass= 'Generichotel27';
+  $db="u964845835_klc";
 
 
   

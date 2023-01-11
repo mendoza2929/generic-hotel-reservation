@@ -21,7 +21,7 @@ include_once 'dbconnection.php';
     <title>KLC HOMES - Confirm Reservation</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-      
+     <link rel="icon" href="img/logo.jpg">
     <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
@@ -29,7 +29,7 @@ include_once 'dbconnection.php';
     />
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<script src="https://www.paypal.com/sdk/js?client-id=ATCuaMwZvvLQw_uUsfFXHMjrMA0S99bUGeEOy2l8LxLDTrTErChioDQ2KPsINWzRiUpKCD0pWxgsyLtY"></script>
+
 
 </head>
 
@@ -98,7 +98,7 @@ if($home_r['shutdown']==1){
 
     <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><i class="bi bi-house-fill"></i><?php echo $home_r['site_title']?></a>
+        <a class="navbar-brand me-5 fw-bold fs-3" href="index.php"><?php echo $home_r['site_title']?></a>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -130,7 +130,6 @@ if($home_r['shutdown']==1){
                 $_SESSION[uName]
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                   <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
@@ -209,13 +208,14 @@ if($home_r['shutdown']==1){
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
            
-            <form action="charge.php" id="booking_form" method="POST" class="paypal">
+            <form action="charge.php" id="booking_form" method="POST" >
               <h6 class="mb-3 text-center fw-bold">Reservation Details</h6>
-
-
-
-           
-
+            
+                <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?> ">
+                
+                
+                <input type="hidden" name="cmd" value="_xclick">
+ 
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label class="form-label mb-1">Name</label>
@@ -237,11 +237,15 @@ if($home_r['shutdown']==1){
                     <label class="form-label">Check-out</label>
                     <input type="date"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
                   </div>
+                     
                   <div class="col-12">
                     <div class="spinner-border text-info mb-3 d-none" id="info_loader" role="status">
                       <span class="visually-hidden">Loading...</span>
                     </div>
                   <h6 class="text-center fw-bold text-danger" id="pay_info">Please provide check-in & check-out date first!</h6>
+           
+                  
+
   
 
                
@@ -521,9 +525,7 @@ if(isset($_GET['account_recovery'])){
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        paypal.Buttons().render('#paypal-button-container');
-    </script>
+
 
 
 
@@ -809,9 +811,13 @@ let booking_form = document.getElementById('booking_form');
 let info_loader = document.getElementById('info_loader');
 let pay_info = document.getElementById('pay_info');
 
+
+
 function check_availability(){
    let checkin_val = booking_form.elements['checkin'].value;
    let checkout_val = booking_form.elements['checkout'].value;
+  
+
 
    booking_form.elements['pay_now'].setAttribute('disabled',true);
 

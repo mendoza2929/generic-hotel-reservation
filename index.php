@@ -5,6 +5,8 @@ require('admin/db.php');
 require('admin/alert.php');
 
 
+
+
 ?>
 
 
@@ -17,11 +19,11 @@ require('admin/alert.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLC HOMES</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
-
+    <link rel="icon" href="img/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   
     <!-- Link Swiper's CSS -->
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
@@ -53,6 +55,8 @@ if($home_r['shutdown']==1){
 
 
 ?>
+
+
 
 
 <nav class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top nav-user">
@@ -89,7 +93,7 @@ if($home_r['shutdown']==1){
                   $_SESSION[uName]
                   </button>
                   <ul class="dropdown-menu dropdown-menu-lg-end ">
-                    <li><a class="dropdown-item btn btn-danger " href="profile.php">Profile</a></li>
+
                     <li><a class="dropdown-item" href="bookings.php">Your Reservation</a></li>
                     <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
                   </ul>
@@ -120,14 +124,14 @@ if($home_r['shutdown']==1){
     <div class="swiper swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="./img/bg2.jpg" class="h-50 w-100 d-block"  />
+          <img src="./img/1logo.jpg" class="h-50 w-100 d-block"  />
         </div>
     
       </div>
     </div>
 
     <!---Check Availability--->
-    <div class="availability-form">
+    <div class="availability-form" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12 bg-white shadow p-4 rounded ">
@@ -390,7 +394,7 @@ Own water tank: Deep well – no water interruption</h5>
 
 <!----Footer--->
 
-  <div class="container-fluid bg-white mt-5">
+  <div class="container-fluid mt-5 bg-white">
     <div class="row">
       <div class="col-lg-4 p-4">
         <h3 class="fw-bold fs-3 mb-4">KLC HOMES</h3>
@@ -457,6 +461,8 @@ Own water tank: Deep well – no water interruption</h5>
   
    
 <!-- JavaScript Bundle with Popper -->
+<script src="admin/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

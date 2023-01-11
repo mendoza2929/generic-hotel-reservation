@@ -19,7 +19,7 @@
     <title>Admin KLC</title>
     <!-- CSS only -->
     
-<Link rel="stylesheet" href="stylesheet.css"/>
+<Link rel="stylesheet" href="stylesheets.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -36,10 +36,26 @@
 </head>
 
 <body class="bg-light">
+
+
+<?php 
+
+
+
+
+$home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+$values = [1];
+$home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+
+
+
+
+
+?>
     
   <div class="login-form text-center rounded bg-white shadow overflow-hidden">
       <form method="POST" autocomplete="off">
-          <h4 class="bg-secondary text-white py-3 ">Hotel Admin Reservation <i class="bi bi-house-fill"></i></h4>
+          <h4 class="bg-secondary text-white py-3 "><?php echo $home_r['site_title']?></i></h4>
           <div class="p-4">
               <div class="mb-3">
                   
